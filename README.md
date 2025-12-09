@@ -20,6 +20,13 @@ Documentation is available at https://kiro.dev/docs/powers/
 
 ---
 
+### aws-infrastructure-as-code
+**AWS Infrastructure as Code** - Generate well-architected AWS infrastructure with CDK and CloudFormation - access latest documentation, validate templates, and troubleshoot deployments
+
+**MCP Servers:** aws-iac-mcp-server
+
+---
+
 ### cloud-architect
 **AWS CDK with Python** - Build AWS infrastructure as code following AWS Well-Architected framework best practices. Specialized for Python CDK development with comprehensive testing strategies.
 
