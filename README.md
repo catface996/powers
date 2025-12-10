@@ -69,6 +69,13 @@ Documentation is available at https://kiro.dev/docs/powers/
 
 ---
 
+### requirements-analyst
+**Requirements Analyst** - Complete requirements engineering power with 6-phase methodology: Discovery, Classification, Analysis, Prioritization, Validation, and Specification.
+
+**MCP Servers:** None (standalone power)
+
+---
+
 ### saas-builder
 **SaaS Builder** - Build production-ready multi-tenant SaaS applications with serverless architecture, integrated billing, and enterprise-grade security.
 
