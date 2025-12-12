@@ -14,6 +14,58 @@ This document defines how you MUST interact with users when this power is activa
 
 ---
 
+## CRITICAL RULE: Mandatory Audit Logging
+
+**EVERY user response MUST be logged to `aidlc-docs/audit.md` IMMEDIATELY.**
+
+### After EVERY User Input, You MUST:
+
+1. **FIRST**: Append to `aidlc-docs/audit.md`:
+   ```markdown
+   ---
+
+   ## [Current Stage/Context]
+   **Timestamp**: [ISO timestamp]
+   **User Input**: "[Exact user response - copy verbatim]"
+   **Action Taken**: [What you will do based on this input]
+
+   ---
+   ```
+
+2. **THEN**: Process the user's response and continue
+
+### Audit Logging is MANDATORY For:
+- ✅ Language selection (A/B)
+- ✅ Resume/Fresh start choice
+- ✅ Requirements description
+- ✅ Every question answer (A/B/C/Other)
+- ✅ Every stage approval (Continue/Request changes)
+- ✅ Every clarification response
+- ✅ Every custom input
+
+### Example Audit Entry:
+```markdown
+---
+
+## Language Selection
+**Timestamp**: 2024-01-15T10:30:00Z
+**User Input**: "A"
+**Action Taken**: Language set to English, proceeding to ask requirements
+
+---
+
+## Requirements Input
+**Timestamp**: 2024-01-15T10:31:00Z
+**User Input**: "Create a REST API for user management with JWT authentication"
+**Action Taken**: Recorded requirements, proceeding to Workspace Detection
+
+---
+```
+
+**VIOLATION**: If you process a user response WITHOUT logging to audit.md first, you have FAILED the protocol.
+
+---
+
 ## Step 0: Initialization (MANDATORY - CANNOT BE SKIPPED)
 
 **CRITICAL**: This initialization step is MANDATORY and MUST be executed EVERY time AI-DLC Power is activated. DO NOT skip this step under ANY circumstances.
@@ -180,8 +232,24 @@ Reply with "A" or "B" / 请回复 "A" 或 "B"
 
 ## After Language Selection: English
 
-If user selects **A (English)**, respond ONLY with:
+If user selects **A (English)**:
 
+**STEP 1 - LOG TO AUDIT.MD FIRST:**
+```markdown
+---
+
+## Language Selection
+**Timestamp**: [ISO timestamp]
+**User Input**: "A"
+**Action Taken**: Language set to English
+
+---
+```
+
+**STEP 2 - UPDATE aidlc-state.md:**
+Set `Language: English`
+
+**STEP 3 - RESPOND:**
 ```
 Language set to: **English**
 
@@ -196,8 +264,24 @@ _Describe your project, feature, or the changes you need._
 
 ## After Language Selection: Chinese
 
-If user selects **B (中文)**, respond ONLY with:
+If user selects **B (中文)**:
 
+**第1步 - 先记录到 AUDIT.MD:**
+```markdown
+---
+
+## 语言选择
+**时间戳**: [ISO 时间戳]
+**用户输入**: "B"
+**执行动作**: 语言设置为中文
+
+---
+```
+
+**第2步 - 更新 aidlc-state.md:**
+设置 `Language: Chinese`
+
+**第3步 - 响应:**
 ```
 语言已设置为: **中文**
 
@@ -206,14 +290,30 @@ If user selects **B (中文)**, respond ONLY with:
 _请描述您的项目、功能或需要的更改。_
 ```
 
-**STOP HERE. Wait for user to describe their needs. Do NOT explain the workflow yet.**
+**在此停止。等待用户描述需求。不要解释工作流。**
 
 ---
 
 ## After User Describes Requirements
 
-Once user provides their requirements, proceed to:
+Once user provides their requirements:
 
+**STEP 1 - LOG TO AUDIT.MD FIRST:**
+```markdown
+---
+
+## Requirements Input
+**Timestamp**: [ISO timestamp]
+**User Input**: "[Copy user's exact requirements verbatim]"
+**Action Taken**: Recorded requirements, proceeding to Workspace Detection
+
+---
+```
+
+**STEP 2 - UPDATE aidlc-state.md:**
+Set `Current Stage: Workspace Detection`
+
+**STEP 3 - PROCEED:**
 1. **Workspace Detection** - Analyze if greenfield or brownfield
 2. Present findings and ask for confirmation
 3. Continue stage by stage with approval at each checkpoint
@@ -271,6 +371,44 @@ Your choice:
 ---
 您的选择:
 ```
+
+### When User Responds to Stage Transition:
+
+**If user selects A (Continue):**
+
+STEP 1 - LOG TO AUDIT.MD:
+```markdown
+---
+
+## [Stage Name] Approved
+**Timestamp**: [ISO timestamp]
+**User Input**: "A"
+**Action Taken**: User approved [stage name], proceeding to [next stage]
+
+---
+```
+
+STEP 2 - UPDATE aidlc-state.md:
+- Mark current stage as completed
+- Set next stage as current
+
+STEP 3 - Proceed to next stage
+
+**If user selects B (Request changes):**
+
+STEP 1 - LOG TO AUDIT.MD:
+```markdown
+---
+
+## [Stage Name] Change Requested
+**Timestamp**: [ISO timestamp]
+**User Input**: "B"
+**Action Taken**: User requested changes to [stage name]
+
+---
+```
+
+STEP 2 - Ask user what changes they want (ONE question only)
 
 ---
 
