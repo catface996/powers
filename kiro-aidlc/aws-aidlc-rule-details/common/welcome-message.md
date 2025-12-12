@@ -1,14 +1,12 @@
-# AI-DLC Welcome Message / AI-DLC 欢迎消息
+# AI-DLC Welcome Message
 
 **Purpose**: This file contains brief welcome messages. Display ONLY when user explicitly asks about AI-DLC.
-
-**目的**: 此文件包含简短的欢迎消息。仅在用户明确询问 AI-DLC 时显示。
 
 **IMPORTANT**: Do NOT display this automatically. The interaction protocol handles the initial flow.
 
 ---
 
-# ENGLISH VERSION
+## ENGLISH VERSION
 
 Use this ONLY if user asks "What is AI-DLC?" or "How does this work?":
 
@@ -38,9 +36,9 @@ What would you like to build?
 
 ---
 
-# 中文版本
+## CHINESE VERSION
 
-仅在用户询问"AI-DLC 是什么？"或"这是如何工作的？"时使用：
+Use this ONLY if user selected Chinese AND asks "AI-DLC 是什么？" or "这是如何工作的？":
 
 ```
 **AI-DLC**（AI 驱动开发生命周期）是一个自适应的软件开发工作流。

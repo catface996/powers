@@ -31,7 +31,7 @@
 Your choice:
 ```
 
-### Chinese Format / 中文格式:
+### Chinese Format:
 ```
 **问题: [主题]**
 

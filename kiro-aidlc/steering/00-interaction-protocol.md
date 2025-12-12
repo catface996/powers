@@ -266,22 +266,22 @@ _Describe your project, feature, or the changes you need._
 
 If user selects **B (中文)**:
 
-**第1步 - 先记录到 AUDIT.MD:**
+**STEP 1 - LOG TO AUDIT.MD FIRST:**
 ```markdown
 ---
 
-## 语言选择
-**时间戳**: [ISO 时间戳]
-**用户输入**: "B"
-**执行动作**: 语言设置为中文
+## Language Selection
+**Timestamp**: [ISO timestamp]
+**User Input**: "B"
+**Action Taken**: Language set to Chinese
 
 ---
 ```
 
-**第2步 - 更新 aidlc-state.md:**
-设置 `Language: Chinese`
+**STEP 2 - UPDATE aidlc-state.md:**
+Set `Language: Chinese`
 
-**第3步 - 响应:**
+**STEP 3 - RESPOND (in Chinese):**
 ```
 语言已设置为: **中文**
 
@@ -290,7 +290,7 @@ If user selects **B (中文)**:
 _请描述您的项目、功能或需要的更改。_
 ```
 
-**在此停止。等待用户描述需求。不要解释工作流。**
+**STOP HERE. Wait for user to describe their needs. Do NOT explain the workflow yet.**
 
 ---
 
