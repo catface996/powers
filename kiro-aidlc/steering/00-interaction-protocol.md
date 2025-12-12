@@ -247,7 +247,9 @@ If user selects **A (English)**:
 ```
 
 **STEP 2 - UPDATE aidlc-state.md:**
-Set `Language: English`
+- Set `Language: English` in Project Information
+- Mark `[x] Language Selection` in Stage Progress
+- Update Current Status: `Current Stage: Language Selection Complete`, `Next Stage: Workspace Detection`
 
 **STEP 3 - RESPOND:**
 ```
@@ -279,7 +281,9 @@ If user selects **B (中文)**:
 ```
 
 **STEP 2 - UPDATE aidlc-state.md:**
-Set `Language: Chinese`
+- Set `Language: Chinese` in Project Information
+- Mark `[x] Language Selection` in Stage Progress
+- Update Current Status: `Current Stage: Language Selection Complete`, `Next Stage: Workspace Detection`
 
 **STEP 3 - RESPOND (in Chinese):**
 ```
@@ -311,7 +315,8 @@ Once user provides their requirements:
 ```
 
 **STEP 2 - UPDATE aidlc-state.md:**
-Set `Current Stage: Workspace Detection`
+- Update `Current Stage: INCEPTION - Workspace Detection` in Project Information
+- Update Current Status: `Current Stage: Requirements Input Complete`, `Next Stage: Workspace Detection`
 
 **STEP 3 - PROCEED:**
 1. **Workspace Detection** - Analyze if greenfield or brownfield
@@ -389,8 +394,12 @@ STEP 1 - LOG TO AUDIT.MD:
 ```
 
 STEP 2 - UPDATE aidlc-state.md:
-- Mark current stage as completed
-- Set next stage as current
+- Mark current stage with `[x]` in Stage Progress
+- Update `Current Stage` in Project Information to next stage
+- Update Current Status section:
+  - `Current Stage: [stage name] Complete`
+  - `Next Stage: [next stage name]`
+  - `Status: Ready to proceed`
 
 STEP 3 - Proceed to next stage
 

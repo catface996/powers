@@ -66,43 +66,47 @@ aidlc-docs/
 ### aidlc-state.md (Initial)
 
 ```markdown
-# AI-DLC Workflow State
+# AI-DLC State Tracking
 
-**Created**: [ISO timestamp]
-**Last Updated**: [ISO timestamp]
-**Status**: Initializing
-**Language**: Pending
+## Project Information
+- **Project Type**: Unknown (pending workspace detection)
+- **Start Date**: [ISO timestamp]
+- **Language**: Pending selection
+- **Current Stage**: INITIALIZATION - Language Selection
 
----
+## Execution Plan Summary
+- **Total Stages**: TBD (after workflow planning)
+- **Stages to Execute**: TBD
+- **Stages to Skip**: TBD
 
-## Current Phase
-INITIALIZATION
+## Stage Progress
 
-## Current Stage
-Language Selection
-
----
-
-## Progress
-
-### Completed Stages
-(none)
-
-### Skipped Stages
-(none)
-
-### Pending Stages
+### 🔵 INCEPTION PHASE
 - [ ] Language Selection
 - [ ] Workspace Detection
-- [ ] (additional stages determined after workspace detection)
+- [ ] Requirements Analysis
+- [ ] User Stories - TBD
+- [ ] Workflow Planning
+- [ ] Application Design - TBD
+- [ ] Units Generation - TBD
 
----
+### 🟢 CONSTRUCTION PHASE
+- [ ] Functional Design - TBD
+- [ ] NFR Requirements - TBD
+- [ ] NFR Design - TBD
+- [ ] Infrastructure Design - TBD
+- [ ] Code Planning - TBD
+- [ ] Code Generation - TBD
+- [ ] Build and Test - TBD
 
-## Session Info
+### 🟡 OPERATIONS PHASE
+- [ ] Operations - PLACEHOLDER
 
-**Project Type**: Unknown (pending workspace detection)
-**Complexity**: Unknown (pending assessment)
-**Depth Level**: Unknown (pending workflow planning)
+## Current Status
+- **Lifecycle Phase**: INITIALIZATION
+- **Current Stage**: Language Selection
+- **Next Stage**: Workspace Detection
+- **Status**: Awaiting language selection
 ```
 
 ### audit.md (Initial)
@@ -228,11 +232,21 @@ AI-DLC Power 已激活。
 
 Update `aidlc-state.md`:
 ```markdown
-**Language**: [English/Chinese]
-**Status**: In Progress
+## Project Information
+- **Language**: [English/Chinese]
+- **Current Stage**: INCEPTION - Workspace Detection
 
-## Current Stage
-Workspace Detection
+## Stage Progress
+### 🔵 INCEPTION PHASE
+- [x] Language Selection
+- [ ] Workspace Detection
+...
+
+## Current Status
+- **Lifecycle Phase**: INCEPTION
+- **Current Stage**: Language Selection Complete
+- **Next Stage**: Workspace Detection
+- **Status**: Ready to proceed
 ```
 
 Append to `audit.md`:
@@ -250,9 +264,33 @@ Append to `audit.md`:
 ### After Each Stage Completion
 
 Update `aidlc-state.md`:
-- Move completed stage to "Completed Stages"
-- Update "Current Stage" to next stage
-- Update "Last Updated" timestamp
+- Mark completed stage with `[x]` in Stage Progress
+- Update `Current Stage` in Project Information
+- Update `Current Status` section with:
+  - Current Stage: [completed stage] Complete
+  - Next Stage: [next stage name]
+  - Status: Ready to proceed
+
+### After Workflow Planning
+
+Update `aidlc-state.md` with full execution plan:
+```markdown
+## Execution Plan Summary
+- **Total Stages**: [number]
+- **Stages to Execute**: [list of stages]
+- **Stages to Skip**: [list of stages]
+
+## Stage Progress
+### 🔵 INCEPTION PHASE
+- [x] Language Selection
+- [x] Workspace Detection
+- [x] Requirements Analysis
+- [ ] User Stories - SKIP
+- [x] Workflow Planning
+- [ ] Application Design - EXECUTE
+- [ ] Units Generation - SKIP
+...
+```
 
 Append to `audit.md`:
 - Log stage completion
