@@ -83,8 +83,15 @@ Documentation is available at https://kiro.dev/docs/powers/
 
 ---
 
+### kiro-aidlc
+**Kiro AI-DLC Development Workflow** - AI-Driven Development Life Cycle for Kiro with three phases: Inception (planning & design), Construction (implementation & test), and Operations (deployment & monitoring). Adaptive workflow that matches your project's complexity.
+
+**MCP Servers:** None (standalone power)
+
+---
+
 ### spec-kit
-**Spec-Driven Development** - Complete SDD methodology with 8 workflows: Steering, Specify, Clarify, Plan, Tasks, Implement, Analyze, and Checklist. Transform specifications into executable code with multi-step refinement.
+**Spec-Driven Development** - Complete SDD methodology with 10 workflows: Discover, Steering, Specify, Clarify, Plan, Tasks, Implement, Analyze, Checklist, and Sync. Transform specifications into executable code with multi-step refinement.
 
 **MCP Servers:** None (standalone power)
 
