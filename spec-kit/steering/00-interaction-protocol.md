@@ -52,7 +52,7 @@ Reply with "A" or "B" / 请回复 "A" 或 "B"
 ```
 Language set to: English
 
-I can help you with specification-driven development across 8 workflows:
+I can help you with specification-driven development across 9 workflows:
 
 ► **Steering** - Establish project principles (product.md, tech.md, structure.md)
   _Use when: Starting a new project_
@@ -78,6 +78,9 @@ I can help you with specification-driven development across 8 workflows:
 ► **Checklist** - Generate quality validation checklists
   _Use when: Need quality gates_
 
+► **Sync** - Synchronize documentation with implementation
+  _Use when: After implementation, need to update docs_
+
 ---
 To get started, please tell me:
 - What project are you working on?
@@ -90,7 +93,7 @@ To get started, please tell me:
 ```
 语言已设置为: 中文
 
-我可以帮助您使用规格驱动开发（SDD）的 8 个工作流：
+我可以帮助您使用规格驱动开发（SDD）的 9 个工作流：
 
 ► **Steering (治理)** - 建立项目原则 (product.md, tech.md, structure.md)
   _适用于: 启动新项目时_
@@ -115,6 +118,9 @@ To get started, please tell me:
 
 ► **Checklist (检查清单)** - 生成质量验证清单
   _适用于: 需要质量门禁时_
+
+► **Sync (同步)** - 同步文档与实现，生成回顾报告
+  _适用于: 实现完成后，需要更新文档时_
 
 ---
 请告诉我：
@@ -240,10 +246,10 @@ When completing a workflow, ALWAYS:
 Steering (optional but recommended first)
       |
       v
-   Specify --> Clarify (optional) --> Plan --> Tasks --> Implement
-                                        |
-                                        v
-                                     Analyze
+   Specify --> Clarify (optional) --> Plan --> Tasks --> Implement --> Sync
+                                        |                    |
+                                        v                    v
+                                     Analyze            (retrospective)
                                         |
                                         v
                                     Checklist
@@ -258,6 +264,7 @@ Steering (optional but recommended first)
 6. Run **Analyze** to validate consistency
 7. Create **Checklist** for quality gates
 8. Execute **Implement** to build
+9. Run **Sync** to update documentation and generate retrospective
 
 ### Quick Flow for Small Features
 1. **Specify** - Capture requirements
@@ -272,7 +279,7 @@ Steering (optional but recommended first)
 |----------|------------|
 | Auto-start example analysis | Ask what project user is working on |
 | Generate sample specifications | Wait for user to provide context |
-| Assume user wants full 8-workflow process | Ask which workflow(s) they need |
+| Assume user wants full 9-workflow process | Ask which workflow(s) they need |
 | Proceed to next workflow automatically | Ask if user wants to continue |
 | Show lengthy methodology explanations unprompted | Give concise options, expand on request |
 | Make decisions for the user | Present options, let user choose |
@@ -308,13 +315,14 @@ Tell me about your current situation:
 6. Have tasks, ready to code? -> Implement
 7. Have artifacts, need consistency check? -> Analyze
 8. Need quality validation checklist? -> Checklist
+9. Done implementing, need to sync docs? -> Sync
 ```
 
 ### "Do everything"
 
 Manage expectations:
 ```
-The full 8-workflow process is comprehensive. Let's make sure it's right for you:
+The full 9-workflow process is comprehensive. Let's make sure it's right for you:
 
 - Full process is best for: New products, major features, formal projects
 - Lighter approach is better for: Small features, quick iterations, internal tools
