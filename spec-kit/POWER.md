@@ -1,8 +1,8 @@
 ---
 name: "spec-kit"
 displayName: "Spec-Driven Development"
-description: "Complete SDD methodology power with 8 workflows: Steering, Specify, Clarify, Plan, Tasks, Implement, Analyze, and Checklist - transforming specifications into executable code"
-keywords: ["specification", "SDD", "requirements", "planning", "implementation", "TDD", "code generation", "PRD", "user stories", "acceptance criteria", "steering", "specify", "clarify", "plan", "tasks", "implement", "analyze", "checklist", "spec-kit", "speckit", "功能规格", "需求文档", "技术设计"]
+description: "Complete SDD methodology power with 10 workflows: Steering, Specify, Clarify, Plan, Tasks, Implement, Analyze, Checklist, Sync, and Discover - transforming specifications into executable code"
+keywords: ["specification", "SDD", "requirements", "planning", "implementation", "TDD", "code generation", "PRD", "user stories", "acceptance criteria", "steering", "specify", "clarify", "plan", "tasks", "implement", "analyze", "checklist", "sync", "discover", "reverse", "retrospective", "spec-kit", "speckit", "功能规格", "需求文档", "技术设计", "同步", "回顾", "逆向", "发现"]
 author: "Kiro User"
 ---
 
@@ -40,7 +40,7 @@ Templates constrain AI behavior toward higher-quality specifications through:
 
 ## Workflow Options
 
-### Complete Workflow (8 Commands)
+### Complete Workflow (10 Commands)
 
 1. **Steering** - Establish project principles (product.md, tech.md, structure.md)
 2. **Specify** - Transform feature descriptions into structured specifications
@@ -50,6 +50,8 @@ Templates constrain AI behavior toward higher-quality specifications through:
 6. **Implement** - Execute tasks following TDD approach
 7. **Analyze** - Cross-artifact consistency validation
 8. **Checklist** - Generate domain-specific quality checklists
+9. **Sync** - Synchronize documentation with implementation and generate retrospective
+10. **Discover** - Reverse engineer existing projects to generate steering files and product spec
 
 ### Simplified Workflow (3 Steps)
 For quick iterations:
@@ -96,6 +98,20 @@ Ensure consistency and completeness:
 - Coverage analysis
 - Domain-specific quality checklists
 
+### Phase 6: Retrospective (Sync)
+Synchronize documentation with implementation:
+- Compare planned vs actual implementation
+- Update documentation to reflect reality
+- Generate lessons learned and retrospective report
+- Capture technical debt and recommendations
+
+### Phase 0: Discovery (Discover) - For Existing Projects
+Bootstrap SDD for existing codebases:
+- Analyze existing code to extract product context
+- Reverse engineer technology stack and patterns
+- Generate steering files (product.md, tech.md, structure.md)
+- Create comprehensive product specification
+
 ## Interaction Rules
 
 - **WAIT for user instructions** - Never automatically start workflows
@@ -116,6 +132,8 @@ Detailed methodologies for each workflow are available in the steering files:
 - `06-implement-workflow.md` - Implementation execution
 - `07-analyze-workflow.md` - Consistency analysis
 - `08-checklist-workflow.md` - Quality checklist generation
+- `09-sync-workflow.md` - Documentation sync and retrospective
+- `10-discover-workflow.md` - Project discovery and reverse engineering
 
 Template files:
 - `templates/requirements-template.md` - Feature requirements template
@@ -125,6 +143,8 @@ Template files:
 - `templates/product-template.md` - Product steering template
 - `templates/tech-template.md` - Technology steering template
 - `templates/structure-template.md` - Structure steering template
+- `templates/sync-report-template.md` - Sync report template
+- `templates/product-spec-template.md` - Product specification template
 
 ## File Structure
 
@@ -132,6 +152,8 @@ All specification files are stored in `.kiro/specs/`:
 
 ```
 .kiro/specs/
+├── 000-product-spec/
+│   └── product-spec.md      # Product specification (Discover workflow)
 └── [###-feature-name]/
     ├── requirements.md      # Feature specification (Specify workflow)
     ├── clarifications.md    # Clarification Q&A log (Clarify workflow)
@@ -141,5 +163,6 @@ All specification files are stored in `.kiro/specs/`:
     ├── contracts/           # API specifications
     ├── quickstart.md        # Validation scenarios
     ├── tasks.md             # Task list (Tasks workflow)
-    └── checklists/          # Quality checklists
+    ├── checklists/          # Quality checklists
+    └── sync-report.md       # Sync report (Sync workflow)
 ```
