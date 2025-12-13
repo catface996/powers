@@ -1,11 +1,21 @@
+# Product Specification Template
+
+Use this template when generating product specifications from project discovery.
+
+<!--
+  This template is used by the Discover workflow to document existing projects.
+  Fill in sections based on code analysis and detected patterns.
+  Mark uncertain items with [INFERRED] or [NEEDS CLARIFICATION].
+-->
+
+---
+
 # Product Specification: [PROJECT_NAME]
 
 **Generated**: [TIMESTAMP]
 **Version**: [VERSION]
 **Status**: [Draft/Review/Approved]
 **Last Updated**: [DATE]
-
----
 
 ## Executive Summary
 

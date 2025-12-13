@@ -144,222 +144,50 @@ Understand what the product does and who it serves:
 
 ### Step 5: Generate Steering Files
 
-Based on analysis, generate three steering files:
+Based on analysis, generate three steering files using existing templates as reference:
 
 #### A. Generate product.md
 
-```markdown
-# Product Steering
-
-## Vision
-[Extracted or inferred product purpose]
-
-## Target Users
-[Identified from code analysis, auth systems, UI patterns]
-
-## Business Constraints
-[Inferred from code patterns, validations, limits]
-
-## Success Metrics
-[Suggested based on tracked analytics, logs, or metrics code]
-
-## Non-Functional Requirements
-### Performance
-[From caching patterns, optimization code]
-
-### Security
-[From auth implementation, validation patterns]
-
-### Compliance
-[From data handling, audit logs if present]
-
-## Feature Prioritization
-[Based on code complexity, test coverage, usage patterns]
-```
+Use `templates/product-template.md` as reference. Fill in with:
+- **Vision**: Extracted or inferred product purpose
+- **Target Users**: Identified from code analysis, auth systems, UI patterns
+- **Business Constraints**: Inferred from code patterns, validations, limits
+- **Success Metrics**: Suggested based on tracked analytics, logs, or metrics code
+- **Non-Functional Requirements**: From caching patterns, auth implementation, data handling
 
 #### B. Generate tech.md
 
-```markdown
-# Technology Steering
-
-## Stack
-- **Language**: [detected with version]
-- **Framework**: [detected with version]
-- **Database**: [detected from config/code]
-- **Cache**: [detected or N/A]
-- **Testing**: [detected testing framework]
-- **CI/CD**: [detected from workflow files]
-
-## Development Principles
-[Inferred from code patterns and existing standards]
-
-## Coding Standards
-### Naming
-[Detected conventions]
-
-### Error Handling
-[Detected patterns]
-
-### Logging
-[Detected approach]
-
-## Quality Gates
-[Based on existing CI/CD, linting, test setup]
-
-## Dependency Rules
-[Based on existing dependency management]
-```
+Use `templates/tech-template.md` as reference. Fill in with:
+- **Stack**: Detected language, framework, database, testing tools, CI/CD
+- **Development Principles**: Inferred from code patterns and existing standards
+- **Coding Standards**: Detected naming, error handling, logging patterns
+- **Quality Gates**: Based on existing CI/CD, linting, test setup
+- **Dependency Rules**: Based on existing dependency management
 
 #### C. Generate structure.md
 
-```markdown
-# Structure Steering
-
-## Project Layout
-[Actual detected structure with descriptions]
-
-## Naming Conventions
-### Files
-[Detected pattern]
-
-### Components/Classes
-[Detected pattern]
-
-### Functions
-[Detected pattern]
-
-### Constants
-[Detected pattern]
-
-## Module Organization
-[Detected module patterns and rules]
-
-## API Patterns
-[Detected from route definitions]
-
-## Database Conventions
-[Detected from models/migrations]
-
-## Documentation
-[Detected documentation locations and patterns]
-```
+Use `templates/structure-template.md` as reference. Fill in with:
+- **Project Layout**: Actual detected structure with descriptions
+- **Naming Conventions**: Detected patterns for files, components, functions, constants
+- **Module Organization**: Detected module patterns and rules
+- **API Patterns**: Detected from route definitions
+- **Database Conventions**: Detected from models/migrations
 
 ### Step 6: Generate Product Specification
 
-Create a comprehensive product specification document:
+Use `templates/product-spec-template.md` as reference to create a comprehensive product specification document.
 
-```markdown
-# Product Specification: [PROJECT_NAME]
-
-**Generated**: [TIMESTAMP]
-**Version**: [detected version or 1.0.0]
-**Status**: Draft - Requires Review
-
----
-
-## Executive Summary
-
-[2-3 paragraph overview of what the product does, who it serves, and its key value proposition]
-
----
-
-## Product Overview
-
-### Purpose
-[Why this product exists]
-
-### Target Audience
-[Who uses this product and their needs]
-
-### Key Features
-[List of main features with descriptions]
-
----
-
-## Feature Inventory
-
-| Feature | Description | Location | Status |
-|---------|-------------|----------|--------|
-| [Feature 1] | [Description] | [Files/Modules] | [Active/Deprecated] |
-
----
-
-## Architecture Overview
-
-### System Diagram
-[Text-based or mermaid diagram of system architecture]
-
-### Component Breakdown
-[Description of major components and their responsibilities]
-
-### Data Flow
-[How data moves through the system]
-
----
-
-## Technical Summary
-
-### Technology Stack
-[Summary table of technologies used]
-
-### External Dependencies
-[Third-party services and APIs]
-
-### Infrastructure Requirements
-[Deployment and runtime requirements]
-
----
-
-## API Reference
-
-### Endpoints
-[List of API endpoints with methods and descriptions]
-
-### Data Models
-[Key data models and their fields]
-
----
-
-## Quality & Testing
-
-### Test Coverage
-[Detected test types and coverage if measurable]
-
-### Quality Gates
-[Existing quality checks]
-
----
-
-## Deployment & Operations
-
-### Build Process
-[Detected build steps]
-
-### Deployment
-[Detected deployment approach]
-
-### Monitoring
-[Detected monitoring/logging setup]
-
----
-
-## Known Issues & Technical Debt
-
-[Detected TODO comments, deprecated code, known issues from code analysis]
-
----
-
-## Recommendations
-
-### Documentation Gaps
-[What documentation is missing]
-
-### Suggested Improvements
-[Technical improvements based on analysis]
-
-### SDD Adoption Path
-[Recommended next steps for adopting SDD methodology]
-```
+Key sections to fill based on analysis:
+- **Executive Summary**: Overview of product purpose, users, and value proposition
+- **Product Overview**: Purpose, target audience, key features
+- **Feature Inventory**: Core, supporting, and planned features with status
+- **Architecture Overview**: System diagram, components, data flow
+- **Technical Summary**: Technology stack, dependencies, infrastructure
+- **API Reference**: Endpoints, data models
+- **Quality & Testing**: Test coverage, quality gates
+- **Deployment & Operations**: Build, deployment, monitoring
+- **Known Issues & Technical Debt**: TODO comments, deprecated code
+- **Recommendations**: Documentation gaps, improvements, SDD adoption path
 
 ### Step 7: Present Results
 
@@ -461,7 +289,7 @@ Suggested commit message:
 - Respect .gitignore patterns for exclusion
 - Limit analysis depth for very large monorepos
 
-## Output Files
+## Output
 
 After completing this workflow:
 - `.kiro/steering/product.md` - Product vision and constraints
