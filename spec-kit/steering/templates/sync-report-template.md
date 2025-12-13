@@ -1,10 +1,20 @@
+# Sync Report Template
+
+Use this template when generating sync reports after implementation.
+
+<!--
+  This template is used by the Sync workflow to document deviations
+  between planned specifications and actual implementation.
+  Fill in sections based on code analysis and documentation comparison.
+-->
+
+---
+
 # Sync Report: [FEATURE_NAME]
 
 **Generated**: [TIMESTAMP]
 **Feature Directory**: [FEATURE_DIR]
 **Implementation Status**: [COMPLETED/PARTIAL/IN_PROGRESS]
-
----
 
 ## Executive Summary
 

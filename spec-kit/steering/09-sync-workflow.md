@@ -125,59 +125,17 @@ Scan each documentation file and identify sections needing updates:
 
 ### Step 5: Generate Sync Report
 
-Create a comprehensive sync report at `[FEATURE_DIR]/sync-report.md`:
+Use `templates/sync-report-template.md` as reference to create a comprehensive sync report at `[FEATURE_DIR]/sync-report.md`.
 
-```markdown
-# Sync Report: [FEATURE_NAME]
-
-**Generated**: [TIMESTAMP]
-**Feature Directory**: [FEATURE_DIR]
-**Implementation Status**: [COMPLETED/PARTIAL]
-
-## Executive Summary
-
-[Brief 2-3 sentence summary of sync findings]
-
-## Deviation Analysis
-
-### Matched Items
-| Item | Document | Status |
-|------|----------|--------|
-
-### Deviations
-| Item | Planned | Actual | Impact | Recommendation |
-|------|---------|--------|--------|----------------|
-
-### Scope Changes
-- **Added**: [Features added beyond original spec]
-- **Removed**: [Features descoped]
-- **Modified**: [Features with changed behavior]
-
-## Documentation Updates Required
-
-| File | Section | Change Type | Priority |
-|------|---------|-------------|----------|
-
-## Lessons Learned
-
-### What Went Well
-- [Positive observations]
-
-### Challenges Encountered
-- [Deviations that required workarounds]
-
-### Recommendations for Future
-- [Suggestions based on deviations and challenges]
-
-## Technical Debt Identified
-
-| Item | Description | Priority | Suggested Resolution |
-|------|-------------|----------|---------------------|
-
-## Next Actions
-
-- [ ] [Action items based on findings]
-```
+Key sections to include:
+- **Executive Summary**: Brief summary of sync findings
+- **Missing Artifacts**: Files that were expected but not found
+- **Deviation Analysis**: Matched items, deviations, and scope changes
+- **Documentation Updates Required**: Files and sections needing updates
+- **Lessons Learned**: What went well, challenges, recommendations
+- **Technical Debt Identified**: Items needing future attention
+- **Coverage Summary**: Planned vs implemented comparison
+- **Next Actions**: Prioritized action items
 
 ### Step 6: Display Terminal Summary
 
