@@ -6,113 +6,144 @@ inclusion: agent
 
 **Output File**: `.kiro/specs/[feature-name]/04-clarification.md`
 
+**Standards**: Must follow Ambiguity Taxonomy from `phase4-requirements-clarification.md`
+
 ---
 
 ## File Template
 
 ```markdown
-# Clarification: [Feature Name]
+# Clarification Log: [Feature Name]
 
-**Created**: [Date]
+**Feature**: [feature-name]
+**Session Date**: YYYY-MM-DD
+**Total Questions**: [N]
 **Status**: In Progress | Completed
 
 ---
 
-## 1. Clarification Summary
+## Q1: [Question Title]
 
-| Total Questions | Answered | Pending | Blocked |
-|-----------------|----------|---------|---------|
-| X | X | X | X |
+**Category**: Functional Scope / Domain & Data / Interaction & UX / Non-Functional / Integration / Edge Cases / Terminology
 
----
+**Question**: [Complete question text that was asked]
 
-## 2. Clarification Log
+**Options Presented**:
+- **A**: [Option A - full description]
+- **B**: [Option B - full description]
+- **C**: [Option C - full description]
+- **Other**: Custom answer allowed
 
-### Q1: [Question about requirement]
+**Recommended**: Option [X] - [Reason for this recommendation]
 
-**Requirement**: REQ-001
-**Category**: Project Context | User/Stakeholder | Business Goal | Scope | Functional | Non-functional | Edge Case
-**Asked**: [Date]
+**User's Choice**: [The option letter user selected, or their custom answer]
 
-**Question**:
-> [Single focused question]
+**Resolution**: [How this clarification was applied to the analysis document]
 
-**Why Asked**:
-> [Brief explanation of why this matters for requirements]
-
-**Answer**:
-> [User's response]
-
-**Impact on Requirement**:
-- Original: [Original requirement text]
-- Clarified: [Updated requirement text]
+**Applied To**: [Section in 03-analysis.md that was updated]
 
 ---
 
-### Q2: [Question about requirement]
+## Q2: [Question Title]
 
-[Repeat structure]
+**Category**: [Category]
 
----
+**Question**: [Question text]
 
-## 3. Clarified Requirements
+**Options Presented**:
+- **A**: [Option A]
+- **B**: [Option B]
+- **C**: [Option C]
+- **Other**: Custom answer allowed
 
-### REQ-001: [Requirement Name]
+**Recommended**: Option [X] - [Reason]
 
-**Original**:
-> [Original vague requirement]
+**User's Choice**: [Choice]
 
-**Clarified**:
-> [Clear, specific requirement after clarification]
+**Resolution**: [How applied]
 
-**Changes Made**:
-- [Change 1]
-- [Change 2]
-
-**Acceptance Criteria**:
-
-\`\`\`gherkin
-Scenario: [Scenario name]
-  Given [precondition]
-  When [action]
-  Then [expected result]
-\`\`\`
+**Applied To**: [Section updated]
 
 ---
 
-## 4. Assumptions Documented
+## Summary
+
+| # | Question | Category | Choice | Applied To |
+|---|----------|----------|--------|------------|
+| 1 | [Brief question summary] | [Category] | [A/B/C/Custom] | [Section in 03-analysis.md] |
+| 2 | [Brief question summary] | [Category] | [A/B/C/Custom] | [Section in 03-analysis.md] |
+| 3 | [Brief question summary] | [Category] | [A/B/C/Custom] | [Section in 03-analysis.md] |
+
+---
+
+## Coverage Summary
+
+| Category | Status | Notes |
+|----------|--------|-------|
+| **Functional Scope** | Resolved / Clear / Deferred | [Brief note] |
+| **Domain & Data** | Resolved / Clear / Deferred | [Brief note] |
+| **Interaction & UX** | Resolved / Clear / Deferred | [Brief note] |
+| **Non-Functional** | Resolved / Clear / Deferred | [Brief note] |
+| **Integration** | Resolved / Clear / Deferred | [Brief note] |
+| **Edge Cases** | Resolved / Clear / Deferred | [Brief note] |
+| **Terminology** | Resolved / Clear / Deferred | [Brief note] |
+
+**Status Legend**:
+- **Resolved**: Was ambiguous, now clarified through Q&A
+- **Clear**: Already sufficient in analysis document
+- **Deferred**: Non-blocking, can resolve during implementation
+
+---
+
+## Impact on Analysis Document
+
+### Sections Modified
+
+| Section | Change Description |
+|---------|-------------------|
+| [Section 1] | [Brief description of change] |
+| [Section 2] | [Brief description of change] |
+
+### User Stories Updated
+
+| Story ID | Original | Updated |
+|----------|----------|---------|
+| US-XXX | [Original text] | [Updated based on clarification] |
+
+### Success Criteria Updated
+
+| SC ID | Original | Updated |
+|-------|----------|---------|
+| SC-XXX | [Original] | [Updated based on clarification] |
+
+### New Requirements Added
+
+| Req ID | Description | Source |
+|--------|-------------|--------|
+| REQ-XXX | [New requirement added based on clarification] | Q[N] |
+
+---
+
+## Deferred Items
+
+Items that were identified but deferred for later resolution:
+
+| Item | Category | Reason for Deferral | When to Resolve |
+|------|----------|---------------------|-----------------|
+| [Item 1] | [Category] | [Why deferred] | [Implementation / Design phase] |
+| [Item 2] | [Category] | [Why deferred] | [Implementation / Design phase] |
+
+---
+
+## Assumptions Documented
 
 | ID | Assumption | Related Req | Risk if Wrong | Validated |
 |----|------------|-------------|---------------|-----------|
-| ASM-001 | [Assumption] | REQ-001 | [Risk] | Yes/No |
+| ASM-001 | [Assumption made during clarification] | REQ-XXX | [Risk] | Yes/No |
 
 ---
 
-## 5. Constraints Identified
-
-| ID | Constraint | Type | Impact | Source |
-|----|------------|------|--------|--------|
-| CON-001 | [Constraint] | Technical/Business/Legal | [Impact] | [Source] |
-
----
-
-## 6. Ambiguities Resolved
-
-| ID | Original Text | Issue | Resolution |
-|----|---------------|-------|------------|
-| AMB-001 | "[Vague text]" | [Why ambiguous] | [How resolved] |
-
----
-
-## 7. Pending Clarifications
-
-| ID | Question | Requirement | Owner | Due Date |
-|----|----------|-------------|-------|----------|
-| PND-001 | [Question] | REQ-XXX | [Name] | [Date] |
-
----
-
-## 8. Out of Scope (Confirmed)
+## Out of Scope (Confirmed)
 
 | Item | Reason | Future Consideration |
 |------|--------|---------------------|
@@ -120,8 +151,23 @@ Scenario: [Scenario name]
 
 ---
 
+## Session Notes
+
+[Any additional notes about the clarification session, observations, or recommendations for future phases]
+
+---
+
+## Cross-References
+
+- **Analysis Document**: [03-analysis.md](./03-analysis.md) - Updated with clarifications
+- **Previous Phase**: [02-sort.md](./02-sort.md) - Value sorting reference
+- **Next Phase**: [05-validation.md](./05-validation.md) - To be created
+
+---
+
 ## Next Steps
 
-- [ ] Resolve pending clarifications
-- [ ] Proceed to Phase 5: Validate (Requirements Validation)
+- [ ] Proceed to Phase 5: Validate (Multi-role validation)
+- [ ] OR Run Clarify again if deferred items need immediate resolution
+- [ ] Review updated 03-analysis.md before proceeding
 ```

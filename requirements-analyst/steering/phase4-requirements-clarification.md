@@ -4,14 +4,20 @@ inclusion: agent
 
 # Phase 4: Requirements Clarification
 
-## Overview
-Transform vague or ambiguous requirements into clear, unambiguous specifications through systematic questioning and validation.
+**Phase Objective**: Eliminate ambiguity through targeted questioning and document all clarification decisions.
+**Time Allocation**: 15% of total effort
+**Your Role**: Professional Requirements Analyst
 
-## Objectives
-- Eliminate ambiguity in requirements statements
-- Clarify assumptions and constraints
-- Define clear boundaries and scope
-- Establish measurable acceptance criteria
+---
+
+## Quick Reference
+
+| Aspect | Guideline |
+|--------|-----------|
+| Max Questions | 5 per session |
+| Question Format | Multiple-choice (2-4 options) or Short phrase (<=5 words) |
+| Delivery | ONE question at a time, wait for answer |
+| Output Files | `04-clarification.md` (log) + update `03-analysis.md` |
 
 ---
 
@@ -22,116 +28,287 @@ Transform vague or ambiguous requirements into clear, unambiguous specifications
 
 ---
 
-## Clarification Process
+## Pre-Check (GATE CHECK)
 
-### Step 1: Identify Ambiguities
-Look for these common ambiguity patterns:
-- Vague terms: "user-friendly", "fast", "secure"
+**MUST pass this check before starting**:
+
+- [ ] **Phase 3 completed?** Verify `03-analysis.md` exists with user stories and use cases
+- [ ] **Ambiguities identified?** List requirements with `[NEEDS CLARIFICATION]` markers
+- [ ] **Stakeholder available?** User can answer clarification questions
+
+**If ANY check fails**: STOP. Return to Phase 3 or wait for stakeholder availability.
+
+---
+
+## Ambiguity Taxonomy (MUST SCAN)
+
+Perform a structured ambiguity scan using this taxonomy:
+
+### 1. Functional Scope & Behavior
+
+| Check Point | Questions to Consider |
+|-------------|----------------------|
+| Core user goals | What defines success for the user? |
+| Success criteria | How do we measure if the feature works? |
+| Out-of-scope | What is explicitly NOT included? |
+| User roles | Are all personas clearly differentiated? |
+
+### 2. Domain & Data Model
+
+| Check Point | Questions to Consider |
+|-------------|----------------------|
+| Entities & attributes | Are all data fields defined? |
+| Identity & uniqueness | What makes each record unique? |
+| Lifecycle/state | What states can entities transition through? |
+| Data volume | What scale assumptions are we making? |
+
+### 3. Interaction & UX Flow
+
+| Check Point | Questions to Consider |
+|-------------|----------------------|
+| User journeys | Are critical paths fully documented? |
+| Error states | What happens when things go wrong? |
+| Empty states | What does the user see with no data? |
+| Loading states | How is progress communicated? |
+
+### 4. Non-Functional Quality Attributes
+
+| Check Point | Questions to Consider |
+|-------------|----------------------|
+| Performance | Latency and throughput targets? |
+| Scalability | Horizontal/vertical limits? |
+| Reliability | Uptime and recovery requirements? |
+| Security | Authentication and authorization rules? |
+| Compliance | Regulatory constraints? |
+
+### 5. Integration & External Dependencies
+
+| Check Point | Questions to Consider |
+|-------------|----------------------|
+| External APIs | Which services? Failure modes? |
+| Data formats | Import/export specifications? |
+| Protocol versions | API versioning strategy? |
+
+### 6. Edge Cases & Failure Handling
+
+| Check Point | Questions to Consider |
+|-------------|----------------------|
+| Negative scenarios | What if user provides invalid input? |
+| Rate limiting | How to handle abuse? |
+| Concurrent edits | Conflict resolution strategy? |
+
+### 7. Terminology & Consistency
+
+| Check Point | Questions to Consider |
+|-------------|----------------------|
+| Glossary terms | Are key terms defined? |
+| Synonyms | Are deprecated terms identified? |
+
+---
+
+## Execution Flow
+
+### Step 1: Load and Analyze Specification
+
+Read `03-analysis.md` and scan for ambiguities using the taxonomy above.
+
+**Identify**:
+- Vague terms: "user-friendly", "fast", "secure", "flexible"
 - Missing details: "users can login" (which users? how?)
 - Unclear scope: "manage products" (create/edit/delete/view?)
 - Undefined conditions: "when needed", "if required"
+- Placeholders: `[TBD]`, `[NEEDS CLARIFICATION]`
 
-### Step 2: Apply Clarification Rules (MANDATORY)
+### Step 2: Generate Prioritized Questions
 
-#### STRICT ENFORCEMENT: One Question at a Time
-- **MUST ask only ONE question per response**
-- **FORBIDDEN to ask multiple questions in single response**
-- **MUST wait for user's answer before proceeding**
+Create a prioritized queue of clarification questions (maximum 5):
 
-#### MANDATORY Priority Order (Top-Down)
-**MUST follow this exact sequence:**
-1. **Project Context** - What system/product are we working on?
-2. **User/Stakeholder** - Who will use this? Who are the stakeholders?
-3. **Business Goal** - What business problem are we solving?
-4. **Scope Boundary** - What's included/excluded in this requirement?
-5. **Functional Details** - How should it work?
-6. **Non-functional Requirements** - Performance, security, usability constraints
-7. **Edge Cases** - What happens when things go wrong?
+**Question Constraints**:
+- **Answerable**: Multiple-choice (2-4 options) OR Short phrase (<=5 words)
+- **Impactful**: Must materially impact architecture, data model, UX, or compliance
+- **Balanced**: Cover different categories from the taxonomy
+- **Non-trivial**: Exclude already-answered or obvious questions
 
-#### REQUIRED Question Format
-```
-[Single focused question]
+**Priority Order**:
+1. Functional scope ambiguities (blocking)
+2. Data model ambiguities (architectural impact)
+3. Non-functional requirements (quality impact)
+4. Edge cases (robustness impact)
+5. Terminology (consistency impact)
 
-Why I'm asking: [Brief explanation of why this matters for requirements]
-```
+### Step 3: Sequential Questioning (ONE AT A TIME)
 
-### Step 3: Document Clarified Requirements
-After each clarification, update the requirement statement to be:
-- **Specific**: Clear and detailed
-- **Measurable**: Has quantifiable criteria
-- **Unambiguous**: Only one interpretation possible
-- **Testable**: Can be verified
+**CRITICAL**: Present EXACTLY ONE question at a time. Wait for answer before next question.
 
-## Clarification Techniques
+#### Multiple-Choice Question Format
 
-### 5W1H Method
-- **Who**: Which users/roles are involved?
-- **What**: What exactly needs to happen?
-- **When**: Under what conditions/timing?
-- **Where**: In which part of the system?
-- **Why**: What's the business reason?
-- **How**: What's the expected behavior?
+```markdown
+**Question [N/Total]**: [Category]
 
-### Boundary Analysis
-- What's included in this requirement?
-- What's explicitly excluded?
-- What are the edge cases?
-- What happens when things go wrong?
+[Complete question text]
 
-### Constraint Identification
-- Performance requirements (speed, volume)
-- Security requirements (authentication, authorization)
-- Usability requirements (accessibility, user experience)
-- Technical constraints (platforms, integrations)
+**Recommended**: Option [X] - [Brief reason for recommendation]
 
-## Templates
+**Options**:
 
-### Clarification Question Template
-```
-I need to clarify [specific aspect] of this requirement.
+> **A** - [Option A description]
 
-[Single focused question]?
+> **B** - [Option B description]
 
-Why I'm asking: [Explanation of why this matters for the requirement]
+> **C** - [Option C description]
+
+> **Other** - Provide your own answer (<=5 words)
+
+---
+Reply with option letter (e.g., "A"), or "yes" to accept recommendation, or enter your custom answer.
 ```
 
-### Clarified Requirement Template
+#### Short-Answer Question Format
+
+```markdown
+**Question [N/Total]**: [Category]
+
+[Complete question text]
+
+**Suggested Answer**: [Your suggestion] - [Brief reason]
+
+---
+Enter your answer (<=5 words), or "yes" to accept suggestion.
 ```
-**Original**: [Vague requirement statement]
 
-**Clarified**: [Clear, specific requirement]
+### Step 4: Record Answers (MANDATORY)
 
-**Acceptance Criteria**:
-- Given [context]
-- When [action]
-- Then [expected result]
+**CRITICAL**: You MUST create and maintain a clarification log file. This is NON-NEGOTIABLE.
+
+#### 4.1 Create Clarification Log (After First Answer)
+
+**IMMEDIATELY after the FIRST question is answered**, create:
+
+```
+.kiro/specs/[feature-name]/04-clarification.md
 ```
 
-## Quality Checklist
+#### 4.2 Update Log After EACH Answer
 
-Before moving to validation, ensure each requirement is:
-- [ ] Has only one possible interpretation
-- [ ] Includes all necessary details
-- [ ] Defines clear boundaries
-- [ ] Has measurable acceptance criteria
-- [ ] Addresses edge cases and error conditions
+**After EACH question is answered, you MUST**:
 
-## Common Clarification Scenarios
+1. **Append the Q&A record** to `04-clarification.md` immediately
+2. **Update the Summary table** with the new entry
+3. **Save the file** before asking the next question
 
-### Vague User Story
-**Original**: "As a user, I want to search for products"
-**Clarification needed**: Which users? What search criteria? How should results be displayed?
+#### 4.3 Apply Clarification to Analysis Document
 
-### Missing Business Rules
-**Original**: "System should validate user input"
-**Clarification needed**: What validation rules? What happens on validation failure?
+After recording in `04-clarification.md`:
 
-### Unclear Integration
-**Original**: "System should integrate with payment gateway"
-**Clarification needed**: Which gateway? What payment methods? Error handling?
+1. **Update `03-analysis.md`** with clarified requirements:
+   - Functional ambiguity → User Stories / Use Cases
+   - Data model → Domain Model section
+   - Non-functional → Feasibility Assessment
+   - Edge case → Alternative/Exception Flows
 
-## Output
-- Clarified requirement statements
-- Updated acceptance criteria
-- Documented assumptions and constraints
-- Identified dependencies and risks
+2. **Remove ambiguity markers**: Replace `[NEEDS CLARIFICATION]` with resolved content
+
+3. **Add cross-reference** in both files
+
+### Step 5: Stop Conditions
+
+Stop asking questions when ANY of these apply:
+- All critical ambiguities resolved
+- User signals completion ("done", "enough", "no more")
+- Reached 5 questions maximum
+- Remaining ambiguities are non-blocking (can defer to implementation)
+
+### Step 6: Validation
+
+After each write, verify:
+- [ ] Clarification recorded with complete details
+- [ ] Analysis document updated
+- [ ] No contradictory statements introduced
+- [ ] Terminology consistent
+- [ ] Total questions <= 5
+
+### Step 7: Completion Report
+
+**BEFORE reporting completion**, verify:
+1. `04-clarification.md` has been created and saved
+2. `03-analysis.md` has been updated
+3. All questions and answers are recorded
+
+**Output completion report**:
+
+```markdown
+## Clarification Complete
+
+### Files Updated
+
+| File | Path | Status |
+|------|------|--------|
+| Clarification Log | `.kiro/specs/[feature-name]/04-clarification.md` | CREATED |
+| Analysis | `.kiro/specs/[feature-name]/03-analysis.md` | UPDATED |
+
+### Session Summary
+
+**Questions asked**: [N]
+**Session date**: YYYY-MM-DD
+
+### Questions & Answers
+
+| # | Category | Question | Choice |
+|---|----------|----------|--------|
+| 1 | [Category] | [Brief question] | [Choice] |
+| 2 | [Category] | [Brief question] | [Choice] |
+
+### Coverage Summary
+
+| Category | Status |
+|----------|--------|
+| Functional Scope | Resolved / Clear / Deferred |
+| Domain & Data | Resolved / Clear / Deferred |
+| Interaction & UX | Resolved / Clear / Deferred |
+| Non-Functional | Resolved / Clear / Deferred |
+| Integration | Resolved / Clear / Deferred |
+| Edge Cases | Resolved / Clear / Deferred |
+| Terminology | Resolved / Clear / Deferred |
+
+**Status Legend**:
+- **Resolved**: Was ambiguous, now clarified
+- **Clear**: Already sufficient in analysis
+- **Deferred**: Non-blocking, can resolve during implementation
+
+### Recommendation
+
+[Recommend proceeding to Phase 5: Validate, or running Clarify again]
+```
+
+---
+
+## Behavior Rules
+
+- **No ambiguities found**: "No critical ambiguities detected. Recommend proceeding to Phase 5: Validate."
+- **Analysis file missing**: "Please complete Phase 3: Analyze first."
+- **Never exceed 5 questions**: Prioritize most impactful ambiguities
+- **Respect user signals**: Stop immediately if user says "done" or "enough"
+- **Avoid speculation**: Don't ask about tech stack unless it blocks functional clarity
+
+---
+
+## Exit Criteria (NON-NEGOTIABLE)
+
+| Criteria | Standard | Verification | Status |
+|----------|----------|--------------|--------|
+| Clarification Log | `04-clarification.md` created | File exists | [ ] |
+| All Q&A Recorded | Complete details for each question | Review log | [ ] |
+| Analysis Updated | Clarifications applied to `03-analysis.md` | Cross-reference | [ ] |
+| No Contradictions | Consistent statements | Review both files | [ ] |
+| Max 5 Questions | Question count <= 5 | Count in log | [ ] |
+
+---
+
+## Next Step
+
+After completing this phase, proceed to:
+
+**Phase 5: Validation**
+- Multi-role validation (PM, RA, SA, SE, TE perspectives)
+- Requirements completeness check
+- Stakeholder sign-off
