@@ -569,6 +569,50 @@ stateDiagram-v2
 
 ---
 
+### Validation Radar Chart (五维验证雷达图)
+
+\`\`\`mermaid
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#e1f5fe'}}}%%
+xychart-beta
+    title "Requirements Validation Score"
+    x-axis ["Authenticity", "Completeness", "Consistency", "Feasibility", "Verifiability"]
+    y-axis "Score (%)" 0 --> 100
+    bar [85, 92, 95, 78, 88]
+    line [80, 80, 80, 80, 80]
+\`\`\`
+
+> **Note**: The line at 80% represents the minimum acceptable threshold. Dimensions below this line require attention.
+
+#### Score Visualization
+
+| Dimension | Score | Visual | Status |
+|-----------|-------|--------|--------|
+| **Authenticity** | [85]% | ████████░░ | ✅ Pass |
+| **Completeness** | [92]% | █████████░ | ✅ Pass |
+| **Consistency** | [95]% | █████████▌ | ✅ Pass |
+| **Feasibility** | [78]% | ███████▌░░ | ⚠️ At Risk |
+| **Verifiability** | [88]% | ████████▌░ | ✅ Pass |
+
+**Legend**:
+- ████████████ = 100% (Excellent)
+- ████████░░ = 80% (Acceptable threshold)
+- ██████░░░░ = 60% (Needs improvement)
+- ████░░░░░░ = 40% (Critical)
+
+#### Radar Analysis Summary
+
+| Metric | Value |
+|--------|-------|
+| **Average Score** | [87.6]% |
+| **Highest Dimension** | Consistency (95%) |
+| **Lowest Dimension** | Feasibility (78%) |
+| **Dimensions Above Threshold** | 4/5 |
+| **Overall Balance** | Good / Moderate / Poor |
+
+**Key Insight**: [1-2 sentences highlighting the most important observation from the radar chart. Example: "The validation shows strong specification quality (Consistency 95%, Completeness 92%) but Feasibility at 78% indicates schedule or resource constraints that need attention before proceeding."]
+
+---
+
 ### Detailed Score Justification (MANDATORY)
 
 **CRITICAL**: Every dimension score MUST include detailed justification explaining:

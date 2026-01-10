@@ -42,6 +42,51 @@ inclusion: agent
 
 ---
 
+## 1.1 Validation Radar Chart (五维验证雷达图)
+
+\`\`\`mermaid
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#e1f5fe'}}}%%
+xychart-beta
+    title "Requirements Validation Score"
+    x-axis ["Authenticity", "Completeness", "Consistency", "Feasibility", "Verifiability"]
+    y-axis "Score (%)" 0 --> 100
+    bar [85, 92, 95, 78, 88]
+    line [80, 80, 80, 80, 80]
+\`\`\`
+
+> **Note**: The line at 80% represents the minimum acceptable threshold. Dimensions below this line require attention.
+
+### Score Visualization
+
+| Dimension | Score | Visual | Status |
+|-----------|-------|--------|--------|
+| **Authenticity** | [X]% | ████████░░ | ✅/⚠️/❌ |
+| **Completeness** | [X]% | █████████░ | ✅/⚠️/❌ |
+| **Consistency** | [X]% | █████████▌ | ✅/⚠️/❌ |
+| **Feasibility** | [X]% | ███████▌░░ | ✅/⚠️/❌ |
+| **Verifiability** | [X]% | ████████▌░ | ✅/⚠️/❌ |
+
+**Visual Legend**:
+- █ = 10% (each block represents 10%)
+- ░ = remaining to 100%
+- Threshold: 80% (████████░░)
+
+### Radar Analysis Summary
+
+| Metric | Value |
+|--------|-------|
+| **Average Score** | [X]% |
+| **Highest Dimension** | [Dimension] ([X]%) |
+| **Lowest Dimension** | [Dimension] ([X]%) |
+| **Dimensions Above Threshold (≥80%)** | [N]/5 |
+| **Overall Balance** | Good / Moderate / Poor |
+
+### Key Insight
+
+> [2-3 sentences highlighting the most important observations from the radar chart. Identify strengths, weaknesses, and recommended focus areas. Example: "The validation shows strong specification quality (Consistency 95%, Completeness 92%) but Feasibility at 78% indicates schedule or resource constraints that need attention before proceeding. Recommend conducting a deeper feasibility review with technical leads."]
+
+---
+
 ## 2. Authenticity Validation (真实性)
 
 ### Authenticity Score: [X]% - [Status]
