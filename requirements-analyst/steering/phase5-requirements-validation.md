@@ -545,7 +545,7 @@ The validation report includes:
 
 1. **Executive Summary** - Overall validation status
 2. **Dimension Summary Table** - Quick overview of all 5 dimensions
-3. **Validation Radar Chart** - Visual representation of scores (xychart-beta + ASCII progress bars)
+3. **Validation Score Chart** - Visual representation of scores (bar chart + progress bars)
 4. **Detailed Score Justification** - For each dimension:
    - Score calculation formula
    - Positive findings (why score is this high)
@@ -567,11 +567,11 @@ The validation report includes:
 | **Negative Findings** | Issues table explaining why score is not higher |
 | **Verdict** | 2-3 sentences summarizing the score justification |
 
-### Radar Chart Requirements
+### Score Chart Requirements
 
-The radar chart section MUST include:
+The score chart section MUST include:
 - Mermaid `xychart-beta` bar chart with 80% threshold line
-- ASCII progress bar visualization table
+- Progress bar visualization table
 - Analysis summary (average, highest, lowest, balance)
 - Key insight (1-2 sentences)
 

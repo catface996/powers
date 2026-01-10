@@ -42,7 +42,7 @@ inclusion: agent
 
 ---
 
-## 1.1 Validation Radar Chart (五维验证雷达图)
+## 1.1 Validation Score Chart
 
 \`\`\`mermaid
 %%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#e1f5fe'}}}%%
@@ -56,7 +56,7 @@ xychart-beta
 
 > **Note**: The line at 80% represents the minimum acceptable threshold. Dimensions below this line require attention.
 
-### Score Visualization
+### Score Progress Bars
 
 | Dimension | Score | Visual | Status |
 |-----------|-------|--------|--------|
@@ -71,7 +71,7 @@ xychart-beta
 - ░ = remaining to 100%
 - Threshold: 80% (████████░░)
 
-### Radar Analysis Summary
+### Score Analysis Summary
 
 | Metric | Value |
 |--------|-------|
@@ -83,7 +83,7 @@ xychart-beta
 
 ### Key Insight
 
-> [2-3 sentences highlighting the most important observations from the radar chart. Identify strengths, weaknesses, and recommended focus areas. Example: "The validation shows strong specification quality (Consistency 95%, Completeness 92%) but Feasibility at 78% indicates schedule or resource constraints that need attention before proceeding. Recommend conducting a deeper feasibility review with technical leads."]
+> [2-3 sentences highlighting the most important observations from the validation scores. Identify strengths, weaknesses, and recommended focus areas. Example: "The validation shows strong specification quality (Consistency 95%, Completeness 92%) but Feasibility at 78% indicates schedule or resource constraints that need attention before proceeding. Recommend conducting a deeper feasibility review with technical leads."]
 
 ---
 
