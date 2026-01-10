@@ -210,6 +210,20 @@ Create a prioritized queue of clarification questions:
 
 **CRITICAL**: Present EXACTLY ONE question at a time. Wait for answer before next question.
 
+#### Rule: One Question Per Response
+
+✅ **CORRECT**:
+```
+What specific user role will be using this login feature?
+
+Why I'm asking: Different user types (admin, customer, guest) have different authentication requirements.
+```
+
+❌ **VIOLATION**:
+```
+What user roles will use this? What are the security requirements? Do you need password reset?
+```
+
 #### Multiple-Choice Question Format
 
 ```markdown

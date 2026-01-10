@@ -100,50 +100,6 @@ For quick requirements:
 
 ---
 
-## Clarification Rules (MANDATORY)
-
-### One Question at a Time (STRICT)
-- MUST ask only ONE question per response
-- FORBIDDEN to ask multiple questions in single response
-- MUST wait for user's answer before proceeding
-- VIOLATION: If you ask multiple questions, you have failed
-
-### Priority Order (MUST follow this sequence)
-1. Project Context - What system/product?
-2. User/Stakeholder - Who will use this?
-3. Business Goal - What problem are we solving?
-4. Scope Boundary - What's included/excluded?
-5. Functional Details - How should it work?
-6. Non-functional Requirements - Performance, security, usability?
-7. Edge Cases - What happens when things go wrong?
-
-### Question Format
-```
-[Single focused question]
-
-Why I'm asking: [Brief explanation of why this matters]
-```
-
-### Compliance Check (before sending)
-- [ ] Am I asking only ONE question?
-- [ ] Is this the highest priority unanswered question?
-- [ ] Have I explained why I'm asking this?
-
-### Example
-✅ CORRECT:
-```
-What specific user role will be using this login feature?
-
-Why I'm asking: Different user types (admin, customer, guest) have different authentication requirements.
-```
-
-❌ VIOLATION:
-```
-What user roles will use this? What are the security requirements? Do you need password reset?
-```
-
----
-
 ## Prohibited Behaviors
 
 | ❌ Don't | ✅ Do Instead |
