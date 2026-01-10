@@ -176,6 +176,7 @@ All detailed methodologies are in the `steering/` directory:
 - `template-prd.md` - PRD document template
 - `template-openapi.md` - OpenAPI specification template
 - `template-bdd.md` - BDD/Gherkin scenario template
+- `template-rtm.md` - Requirements Traceability Matrix template
 
 ---
 
@@ -192,7 +193,7 @@ All detailed methodologies are in the `steering/` directory:
 | `phase3-requirements-analysis.md` | `template-analysis.md` | `helper-diagram-standards.md` | - |
 | `phase4-requirements-clarification.md` | `template-clarification.md` | - | - |
 | `phase5-requirements-validation.md` | `template-validation.md` | `helper-multi-role-validation.md` | - |
-| `phase6-requirements-specification.md` | `template-specification.md` | - | `template-prd.md`, `template-openapi.md`, `template-bdd.md` |
+| `phase6-requirements-specification.md` | `template-specification.md` | - | `template-prd.md`, `template-openapi.md`, `template-bdd.md`, `template-rtm.md` |
 
 ### Loading Rules
 
@@ -221,6 +222,7 @@ All detailed methodologies are in the `steering/` directory:
 ├── 06-specification.md  ← Phase 6 output (summary)
 ├── prd.md               ← Phase 6 deliverable (PRD)
 ├── api.yaml             ← Phase 6 deliverable (OpenAPI)
+├── rtm.md               ← Phase 6 deliverable (RTM)
 └── features/            ← Phase 6 deliverable (BDD)
     └── *.feature
 ```

@@ -17,8 +17,8 @@ inclusion: agent
 | PRD Document | Markdown/PDF | Complete product requirements | ✅ Yes |
 | API Specification | OpenAPI YAML | API contract definition | If API-heavy |
 | BDD Scenarios | Gherkin | Executable test scenarios | ✅ Yes |
+| RTM | Markdown | Requirements traceability matrix | ✅ Yes |
 | Requirements Baseline | Version controlled | Change management | ✅ Yes |
-| Traceability Matrix | Table | Requirements tracking | ✅ Yes |
 
 **Baseline Establishment Process**:
 1. Requirements Freeze → 2. Formal Review → 3. Stakeholder Approval → 4. Version Release → 5. Change Control
@@ -147,7 +147,8 @@ Support these placeholder formats:
 1. **PRD Document**: Write complete Product Requirements Document
 2. **API Specification**: Define API design document (if applicable)
 3. **BDD Scenarios**: Write BDD test scenarios in Gherkin format
-4. **Requirements Baseline**: Establish formal requirements baseline with version control
+4. **RTM**: Create Requirements Traceability Matrix linking requirements to design, code, and tests
+5. **Requirements Baseline**: Establish formal requirements baseline with version control
 
 ## What You MUST NEVER Do
 
@@ -256,7 +257,54 @@ Write executable test scenarios in Gherkin format for behavior-driven developmen
 
 ---
 
-## Method 4: Requirements Baseline Management
+## Method 4: Requirements Traceability Matrix (RTM)
+
+### Purpose
+
+Create a comprehensive traceability matrix that links requirements to design, implementation, and test artifacts throughout the project lifecycle.
+
+### RTM Structure Overview
+
+| Section | Content |
+|---------|---------|
+| Forward Traceability | Requirements → Design → Code → Tests |
+| Backward Traceability | Implementation → Requirements |
+| Test Traceability | Test Cases → Requirements Coverage |
+| Coverage Summary | Progress metrics and gap analysis |
+| Change Impact | Impact analysis for requirement changes |
+| Verification Status | Sign-off and approval tracking |
+
+### Key Traceability Links
+
+| Link Type | From | To | Purpose |
+|-----------|------|-----|---------|
+| **Derives** | Business Req | Functional Req | Decomposition tracking |
+| **Implements** | Requirement | Code Location | Implementation tracking |
+| **Verifies** | Test Case | Requirement | Test coverage tracking |
+| **Depends** | Requirement | Requirement | Dependency management |
+
+### Coverage Metrics
+
+Track these metrics for each requirement:
+
+| Status | Definition |
+|--------|------------|
+| Designed | Has design reference |
+| Implemented | Has code reference |
+| Tested | Has test case(s) |
+| Verified | Stakeholder approved |
+
+### When to Use RTM
+
+- Complex projects with many requirements
+- Regulatory/compliance requirements
+- Multi-team development
+- Long-term maintenance planning
+- Audit and verification needs
+
+---
+
+## Method 5: Requirements Baseline Management
 
 ### Version Numbering
 
@@ -327,10 +375,11 @@ After completing all 6 phases, verify:
 - [ ] ✅ Requirements value sorting matrix (MoSCoW, RICE)
 - [ ] ✅ User story maps and use case diagrams
 - [ ] ✅ Priority ranking and release plans
-- [ ] ✅ Validation report and traceability matrix
+- [ ] ✅ Validation report
 - [ ] ✅ PRD document
 - [ ] ✅ API specification (if applicable)
 - [ ] ✅ BDD scenarios
+- [ ] ✅ Requirements Traceability Matrix (RTM)
 - [ ] ✅ Requirements baseline with version control
 
 ---
@@ -342,6 +391,7 @@ After completing all 6 phases, verify:
 | PRD Document | Complete and reviewed | Checklist verified | [ ] |
 | API Specification | OpenAPI format (if applicable) | Schema validated | [ ] |
 | BDD Scenarios | Core features covered | Syntax validated | [ ] |
+| RTM | All requirements traced | Coverage > 80% | [ ] |
 | Requirements Baseline | Version established | Git tagged | [ ] |
 | Version Control | Under management | Repository confirmed | [ ] |
 | Stakeholder Sign-off | Formal approval | Signatures obtained | [ ] |
@@ -356,6 +406,6 @@ You have completed all 6 phases of requirements engineering.
 - Approved PRD as input
 - BDD scenarios for test-driven development
 - API specifications for development contracts
-- Traceability matrix for ongoing tracking
+- RTM for ongoing traceability and change impact analysis
 
 **Remember**: Requirements specification is not the end, but the starting point of continuous evolution. Establish good change management mechanisms to ensure requirements documentation always reflects the latest understanding.
