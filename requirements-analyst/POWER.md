@@ -91,6 +91,13 @@ When loading a phase, also load its dependencies:
 | 5 | `template-validation.md` | `helper-multi-role-validation.md` | - |
 | 6 | `template-prd.md` | - | `template-openapi.md`, `template-bdd.md`, `template-rtm.md` |
 
+### Execution Rules (MANDATORY)
+
+1. **Load Before Execute**: MUST load template + helper files BEFORE starting phase work
+2. **Write to File**: All phase outputs MUST be written to spec files, NOT just console output
+3. **Follow Template**: Output structure MUST follow loaded template format
+4. **Incremental Write**: Write content progressively as work completes, do NOT wait until end
+
 ### Cross-Phase Rules
 
 | Scenario | Load Files | Action |
