@@ -27,7 +27,12 @@ inclusion: agent
 
 ## Output
 
-**File**: `.kiro/specs/[feature-name]/06-specification.md`
+**Primary Output**: `.kiro/specs/[feature-name]/prd.md` (Product Requirements Document)
+
+**Additional Deliverables**:
+- `.kiro/specs/[feature-name]/api.yaml` - OpenAPI specification (if applicable)
+- `.kiro/specs/[feature-name]/rtm.md` - Requirements Traceability Matrix
+- `.kiro/specs/[feature-name]/features/*.feature` - BDD scenarios
 
 > **Dependencies**: See `POWER.md` → File Dependencies for required template and helper files.
 

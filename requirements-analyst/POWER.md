@@ -105,7 +105,7 @@ Enter spec name (lowercase, use hyphens for spaces):
    - `03-analysis.md` exists → Phase 3 completed
    - `04-clarification.md` exists → Phase 4 completed
    - `05-validation.md` exists → Phase 5 completed
-   - `06-specification.md` exists → Phase 6 completed
+   - `prd.md` exists → Phase 6 completed
 3. Suggest next phase or show phase menu
 
 #### If User Creates New Spec:
@@ -171,10 +171,9 @@ All detailed methodologies are in the `steering/` directory:
 - `template-data-model.md` - Data model output template
 - `template-clarification.md` - Clarification output template
 - `template-validation.md` - Validation output template
-- `template-specification.md` - Specification output template
+- `template-prd.md` - PRD document template (Phase 6 primary output)
 
 **Deliverable Templates**:
-- `template-prd.md` - PRD document template
 - `template-openapi.md` - OpenAPI specification template
 - `template-bdd.md` - BDD/Gherkin scenario template
 - `template-rtm.md` - Requirements Traceability Matrix template
@@ -194,7 +193,7 @@ All detailed methodologies are in the `steering/` directory:
 | `phase3-requirements-analysis.md` | `template-analysis.md`, `template-data-model.md` | `helper-diagram-standards.md` | - |
 | `phase4-requirements-clarification.md` | `template-clarification.md` | - | - |
 | `phase5-requirements-validation.md` | `template-validation.md` | `helper-multi-role-validation.md` | - |
-| `phase6-requirements-specification.md` | `template-specification.md` | - | `template-prd.md`, `template-openapi.md`, `template-bdd.md`, `template-rtm.md` |
+| `phase6-requirements-specification.md` | `template-prd.md` | - | `template-openapi.md`, `template-bdd.md`, `template-rtm.md` |
 
 ### Loading Rules
 
@@ -235,8 +234,7 @@ When validation fails, route to appropriate phase:
 ├── data-model.md        ← Phase 3 output (data structure definitions)
 ├── 04-clarification.md  ← Phase 4 output
 ├── 05-validation.md     ← Phase 5 output
-├── 06-specification.md  ← Phase 6 output (summary)
-├── prd.md               ← Phase 6 deliverable (PRD)
+├── prd.md               ← Phase 6 output (Product Requirements Document)
 ├── api.yaml             ← Phase 6 deliverable (OpenAPI)
 ├── rtm.md               ← Phase 6 deliverable (RTM)
 └── features/            ← Phase 6 deliverable (BDD)
