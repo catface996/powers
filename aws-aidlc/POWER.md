@@ -8,9 +8,43 @@ author: "AWS"
 
 # AI-DLC (AI-Driven Development Life Cycle)
 
-**CRITICAL - MANDATORY FIRST STEP**: You MUST read and load `steering/core-workflow.md` BEFORE proceeding with ANY other action. This is NON-NEGOTIABLE. Do NOT respond to users, do NOT start any workflow until you have loaded this file. Failure to load this file first is a violation of this power's protocol.
-
 AI-DLC is an intelligent software development workflow that adapts to your needs, maintains quality standards, and keeps you in control of the process.
+
+---
+
+## MANDATORY FIRST STEP: Language Selection
+
+**CRITICAL**: You MUST ask user to select language BEFORE any other interaction. This is NON-NEGOTIABLE.
+
+When user activates AI-DLC, you MUST first display this prompt:
+
+```
+AI-DLC Power activated.
+
+Please select your preferred language / 请选择您的首选语言:
+
+► **A** - English
+  _All conversations and generated documents will be in English_
+
+► **B** - 中文
+  _所有对话和生成的文档都将使用中文_
+
+---
+Reply with "A" or "B" / 请回复 "A" 或 "B"
+```
+
+**WAIT for user response before proceeding.**
+
+**Do NOT load core-workflow.md until language is selected.**
+**Do NOT display welcome message until language is selected.**
+**Do NOT proceed with ANY workflow steps until language is confirmed.**
+
+Once language is selected:
+1. Record the selection in `aidlc-docs/aidlc-state.md`
+2. Use the selected language for ALL subsequent outputs
+3. **THEN** load `steering/core-workflow.md` and proceed with the workflow
+
+---
 
 ## Overview
 
@@ -31,7 +65,7 @@ Using AI-DLC, [describe your software development need]
 
 All steering files are in the `steering/` directory:
 
-- `core-workflow.md` - Main workflow (includes language selection as MANDATORY FIRST STEP)
+- `core-workflow.md` - Main workflow (load AFTER language selection is complete)
 - `common-*.md` - Shared rules (process overview, content validation, question format, etc.)
 - `inception-*.md` - Inception phase rules
 - `construction-*.md` - Construction phase rules

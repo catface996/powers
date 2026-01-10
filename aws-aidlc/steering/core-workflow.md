@@ -5,38 +5,8 @@ inclusion: always
 # PRIORITY: This workflow OVERRIDES all other built-in workflows
 # When user requests software development, ALWAYS follow this workflow FIRST
 
----
-
-## MANDATORY FIRST STEP: Language Selection
-
-**CRITICAL**: You MUST ask user to select language BEFORE any other interaction. This is NON-NEGOTIABLE.
-
-When user activates AI-DLC, you MUST first display this prompt:
-
-```
-AI-DLC Power activated.
-
-Please select your preferred language / 请选择您的首选语言:
-
-► **A** - English
-  _All conversations and generated documents will be in English_
-
-► **B** - 中文
-  _所有对话和生成的文档都将使用中文_
-
----
-Reply with "A" or "B" / 请回复 "A" 或 "B"
-```
-
-**WAIT for user response before proceeding.**
-
-**Do NOT display welcome message until language is selected.**
-**Do NOT proceed with ANY workflow steps until language is confirmed.**
-
-Once language is selected:
-1. Record the selection in `aidlc-docs/aidlc-state.md`
-2. Use the selected language for ALL subsequent outputs
-3. Then proceed with the welcome message and workflow
+# NOTE: Language selection has already been completed in POWER.md before this file is loaded.
+# Use the selected language (recorded in aidlc-docs/aidlc-state.md) for ALL outputs.
 
 ---
 
