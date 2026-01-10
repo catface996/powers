@@ -51,7 +51,10 @@ Recognize user intent semantically → load corresponding phase file:
 | 5 | Validate quality | `phase5-requirements-validation.md` |
 | 6 | Formalize into PRD | `phase6-requirements-specification.md` |
 
-**Rules**: Context matters (raw req + "analyze" → Phase 3). Skip completed phases. Ask if ambiguous.
+**Rules**:
+- If user provides raw requirements document → Phase 3 (no need to "discover")
+- Skip completed phases based on existing files
+- Ask if intent is ambiguous
 
 ---
 
