@@ -2,7 +2,7 @@
 name: "requirements-analyst"
 displayName: "Requirements Analyst"
 description: "6-phase requirements engineering: Discovery → Sort → Analysis → Clarification → Validation → Specification"
-keywords: ["requirements", "PRD", "user stories", "BDD", "MoSCoW", "FURPS+"]
+keywords: ["requirements", "PRD", "user stories", "MoSCoW", "FURPS+"]
 author: "Kiro User"
 ---
 
@@ -89,7 +89,7 @@ When loading a phase, also load its dependencies:
 | 3 | `template-analysis.md`, `template-data-model.md` | `helper-diagram-standards.md` | - |
 | 4 | `template-clarification.md` | - | - |
 | 5 | `template-validation.md` | `helper-multi-role-validation.md` | - |
-| 6 | `template-prd.md` | - | `template-openapi.md`, `template-bdd.md`, `template-rtm.md` |
+| 6 | `template-prd.md` | - | `template-openapi.md`, `template-rtm.md` |
 
 ### Execution Rules (MANDATORY)
 
@@ -144,7 +144,6 @@ When loading a phase, also load its dependencies:
 ├── prd.md
 ├── api.yaml
 ├── rtm.md
-├── features/*.feature
 └── prototype/
     ├── index.html
     ├── css/
