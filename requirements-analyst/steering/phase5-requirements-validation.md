@@ -569,34 +569,167 @@ stateDiagram-v2
 
 ---
 
-### Detailed Findings by Dimension
+### Detailed Score Justification (MANDATORY)
 
-#### 1. Authenticity
-- **Validated**: [Count] requirements with clear user origin
-- **Concerns**: [List any requirements lacking evidence]
-- **Actions**: [Required actions]
+**CRITICAL**: Every dimension score MUST include detailed justification explaining:
+1. **Why this score**: Specific evidence that led to this score
+2. **What was evaluated**: List of items checked
+3. **Key findings**: Both positive and negative findings
+4. **Score calculation**: How the percentage/rating was derived
 
-#### 2. Completeness
-- **Coverage Score**: [X]%
-- **Gaps Found**: [List]
-- **Actions**: [Required actions]
+---
 
-#### 3. Consistency
-- **Conflicts Found**: [Count]
-- **Resolved**: [Count]
-- **Pending**: [List]
+#### 1. Authenticity Score: [X]% - [Status]
 
-#### 4. Feasibility
-- **Technical**: [Rating] - [Key findings]
-- **Economic**: ROI [X]%, Payback [Y months]
-- **Operational**: [Assessment]
-- **Schedule**: [Assessment]
-- **Compliance**: [Status]
+**Score Calculation**:
+- Total requirements evaluated: [N]
+- Requirements with verified origin: [N]
+- Requirements with stakeholder confirmation: [N]
+- **Formula**: (Verified + Confirmed) / (Total × 2) × 100 = [X]%
 
-#### 5. Verifiability
-- **Testable Requirements**: [X]%
-- **GWT Coverage**: [Y]%
-- **Missing Test Designs**: [List]
+**Positive Findings** (Why score is this high):
+| Req ID | Evidence Type | Source | Confidence |
+|--------|---------------|--------|------------|
+| REQ-001 | User interview | Interview #12, 2024-01-15 | High |
+| REQ-002 | Support ticket | Ticket #456, 50+ similar reports | High |
+| REQ-003 | Business case | Strategic Plan 2024, Section 3.2 | High |
+
+**Negative Findings** (Why score is not higher):
+| Req ID | Issue | Impact | Recommendation |
+|--------|-------|--------|----------------|
+| REQ-004 | No user evidence, assumption-based | May build unwanted feature | Conduct user validation |
+| REQ-005 | Competitor feature copy | May not fit our users | Validate with target users |
+
+**Authenticity Verdict**:
+> [2-3 sentences explaining why this score is appropriate, referencing specific evidence above]
+
+---
+
+#### 2. Completeness Score: [X]% - [Status]
+
+**Score Calculation**:
+
+| Category | Total Items | Specified | Weight | Weighted Score |
+|----------|-------------|-----------|--------|----------------|
+| Functional | [N] | [N] | 30% | [%] |
+| Data | [N] | [N] | 20% | [%] |
+| Flows | [N] | [N] | 20% | [%] |
+| States | [N] | [N] | 10% | [%] |
+| Errors | [N] | [N] | 10% | [%] |
+| NFRs | [N] | [N] | 10% | [%] |
+| **Total** | | | 100% | **[X]%** |
+
+**Positive Findings** (Complete areas):
+- **Functional**: All [N] user stories have acceptance criteria
+- **Data**: All [N] entities have complete attribute definitions
+- **Flows**: Main success scenarios and [N] alternative flows documented
+
+**Negative Findings** (Gaps identified):
+| Gap ID | Category | Missing Item | Impact | Severity |
+|--------|----------|--------------|--------|----------|
+| GAP-001 | Error | Error handling for API timeout | Users see blank screen | Major |
+| GAP-002 | State | State transition from "Pending" to "Cancelled" | Orphan records | Medium |
+| GAP-003 | NFR | Specific latency target for search | Cannot verify performance | Medium |
+
+**Completeness Verdict**:
+> [2-3 sentences explaining the score, highlighting critical gaps and their impact]
+
+---
+
+#### 3. Consistency Score: [X]% - [Status]
+
+**Score Calculation**:
+- Total consistency checks performed: [N]
+- Checks passed: [N]
+- Conflicts detected: [N]
+- Conflicts resolved: [N]
+- **Formula**: (Checks Passed + Resolved) / Total Checks × 100 = [X]%
+
+**Positive Findings** (Consistent areas):
+- **Terminology**: [N] terms consistently used across [N] documents
+- **Data types**: All [N] fields have consistent type definitions
+- **Business rules**: [N] rules with no contradictions
+
+**Negative Findings** (Inconsistencies found):
+| Conflict ID | Type | Req A | Req B | Description | Resolution Status |
+|-------------|------|-------|-------|-------------|-------------------|
+| CON-001 | Logic | REQ-001 | REQ-005 | REQ-001 says "auto-approve < $100", REQ-005 says "all orders need approval" | Resolved: REQ-005 updated |
+| CON-002 | Terminology | REQ-002 | REQ-008 | "Customer" vs "Client" used interchangeably | Resolved: Standardized to "Customer" |
+| CON-003 | Data | REQ-003 | REQ-010 | Email max length: 100 vs 255 chars | Pending |
+
+**Consistency Verdict**:
+> [2-3 sentences explaining the score, highlighting any unresolved conflicts and their risk]
+
+---
+
+#### 4. Feasibility Score: [Rating] - [Status]
+
+**Score Calculation** (Composite Rating):
+
+| Sub-Dimension | Rating | Weight | Weighted Score | Key Factor |
+|---------------|--------|--------|----------------|------------|
+| Technical | High/Med/Low | 30% | [Score] | [Key factor] |
+| Economic | Viable/Marginal/Not | 25% | [Score] | ROI: [X]% |
+| Operational | High/Med/Low | 20% | [Score] | [Key factor] |
+| Schedule | Achievable/Risk/Not | 15% | [Score] | Gap: [N] days |
+| Compliance | Compliant/Gap/Non | 10% | [Score] | [Key factor] |
+| **Overall** | | 100% | **[Rating]** | |
+
+**Technical Feasibility Justification**:
+| Area | Assessment | Evidence |
+|------|------------|----------|
+| Technology Maturity | High | Using React 18, widely adopted, team experienced |
+| Team Capability | Medium | Need 1 additional ML engineer for recommendation feature |
+| Architecture Fit | High | Microservices pattern aligns with existing architecture |
+| Integration | Medium | Payment gateway API has known rate limiting issues |
+
+**Economic Feasibility Justification**:
+| Metric | Value | Benchmark | Assessment |
+|--------|-------|-----------|------------|
+| Development Cost | $150,000 | Budget: $200,000 | ✅ Within budget |
+| Annual Operational | $24,000 | Industry avg: $30,000 | ✅ Below average |
+| Expected Annual Benefit | $300,000 | Required: $100,000 | ✅ Exceeds threshold |
+| 3-Year ROI | 450% | Threshold: 100% | ✅ Strong ROI |
+| Payback Period | 8 months | Threshold: 18 months | ✅ Quick payback |
+
+**Operational/Schedule/Compliance Justification**:
+- **Operational**: Training needs identified (16 hours per support staff), support team can scale
+- **Schedule**: 2-week buffer exists before hard deadline, parallel workstreams reduce risk
+- **Compliance**: GDPR compliant, accessibility audit required before launch (GAP)
+
+**Feasibility Verdict**:
+> [2-3 sentences explaining the overall rating, highlighting blocking issues if any]
+
+---
+
+#### 5. Verifiability Score: [X]% - [Status]
+
+**Score Calculation**:
+
+| Category | Total | Verifiable | Weight | Weighted Score |
+|----------|-------|------------|--------|----------------|
+| Quantified targets | [N] | [N] | 30% | [%] |
+| Test cases designed | [N] | [N] | 30% | [%] |
+| GWT criteria written | [N] | [N] | 25% | [%] |
+| Verification method assigned | [N] | [N] | 15% | [%] |
+| **Total** | | | 100% | **[X]%** |
+
+**Positive Findings** (Verifiable requirements):
+| Req ID | Verification Method | Test Cases | GWT Scenarios | Status |
+|--------|---------------------|------------|---------------|--------|
+| REQ-001 | Automated Test | TC-001~003 | 3 scenarios | ✅ Complete |
+| REQ-002 | Performance Test | PT-001 | 2 scenarios | ✅ Complete |
+| REQ-003 | Manual Demo | Demo-001 | 1 scenario | ✅ Complete |
+
+**Negative Findings** (Non-verifiable requirements):
+| Req ID | Issue | Why Not Verifiable | Recommendation |
+|--------|-------|-------------------|----------------|
+| REQ-004 | Vague target | "System should be fast" | Specify: "Response < 2s for 95th percentile" |
+| REQ-005 | No test design | Complex integration scenario | Design integration test with mock services |
+| REQ-006 | Subjective criteria | "User-friendly interface" | Define: Task completion rate > 90% |
+
+**Verifiability Verdict**:
+> [2-3 sentences explaining the score, highlighting requirements that need refinement]
 
 ---
 
