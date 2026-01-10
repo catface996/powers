@@ -636,12 +636,55 @@ stateDiagram-v2
 
 ---
 
-## Next Step
+## Next Step (MUST PROMPT USER)
 
-After completing this phase, proceed to:
+**CRITICAL**: After EVERY validation session, you MUST present the following options to the user:
 
-**Phase 6: Specification**
-- PRD document writing
-- API specification (if applicable)
-- BDD scenarios
-- Requirements baseline establishment
+```markdown
+---
+## Validation Session Complete
+
+**What would you like to do next?**
+
+| Option | Action | Description |
+|--------|--------|-------------|
+| **A** | **Specify** | Proceed to Specification - write PRD, API spec, BDD scenarios |
+| **B** | **Validate** | Continue Validation - address remaining issues or re-validate |
+| **C** | **Clarify** | Return to Clarification - resolve new ambiguities discovered |
+
+**Recommendation**: [Your recommendation based on validation results]
+
+---
+Reply with **A**, **B**, or **C**, or describe what you'd like to do.
+```
+
+### When to Recommend Each Option
+
+| Recommend | Condition |
+|-----------|-----------|
+| **A (Specify)** | All 5 dimensions pass (✅), no critical issues, sign-off obtained |
+| **B (Validate)** | Critical/major issues remain, feasibility concerns need resolution |
+| **C (Clarify)** | New ambiguities discovered, authenticity gaps need stakeholder input |
+
+### Option Flows
+
+```mermaid
+stateDiagram-v2
+    [*] --> Validate: Start
+
+    Validate --> OptionPrompt: Session Complete
+
+    state OptionPrompt {
+        [*] --> ShowOptions
+        ShowOptions --> WaitUserChoice
+    }
+
+    OptionPrompt --> Specify: User chooses A
+    OptionPrompt --> Validate: User chooses B
+    OptionPrompt --> Clarify: User chooses C
+
+    Clarify --> Validate: After clarification
+    Specify --> [*]: Requirements specified
+
+    note right of OptionPrompt: MUST show options\nafter EVERY session
+```

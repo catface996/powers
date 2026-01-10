@@ -248,9 +248,22 @@ Then [error response]
 
 ---
 
-## Next Steps
+## Next Steps Available
 
-- [ ] Resolve all critical issues before proceeding
-- [ ] Address major issues or document as accepted risks
-- [ ] Proceed to Phase 6: Specify (Requirements Specification)
+**What would you like to do next?**
+
+| Option | Action | When to Choose |
+|--------|--------|----------------|
+| **A** | **Specify** (Proceed) | All 5 dimensions pass, no critical issues, sign-off obtained |
+| **B** | **Validate** (Continue) | Critical/major issues remain, feasibility concerns need resolution |
+| **C** | **Clarify** (Return) | New ambiguities discovered, authenticity gaps need stakeholder input |
+
+### Recommendation
+
+[Based on Validation Dimension Summary above, recommend Option A/B/C]
+
+**Reason**: [Explain why this option is recommended based on validation results]
+
+---
+**Reply with A, B, or C to proceed.**
 ```
