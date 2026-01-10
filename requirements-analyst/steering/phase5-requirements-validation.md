@@ -569,8 +569,12 @@ The validation report includes:
 
 ### Score Chart Requirements
 
-The score chart section MUST include:
-- Mermaid `xychart-beta` bar chart with 80% threshold line
+The score chart section MUST include ONE of:
+- **Option A**: Mermaid `xychart-beta` bar chart (GitHub, VS Code, GitLab)
+- **Option B**: ECharts radar chart (Yuque, Feishu, Confluence, custom systems)
+
+Plus these common elements:
+- 80% threshold indicator
 - Progress bar visualization table
 - Analysis summary (average, highest, lowest, balance)
 - Key insight (1-2 sentences)

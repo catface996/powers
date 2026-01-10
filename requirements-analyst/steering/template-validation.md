@@ -44,6 +44,10 @@ inclusion: agent
 
 ## 1.1 Validation Score Chart
 
+> **Choose ONE visualization format based on your documentation platform.**
+
+### Option A: Mermaid Bar Chart (GitHub, VS Code, GitLab)
+
 \`\`\`mermaid
 %%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#e1f5fe'}}}%%
 xychart-beta
@@ -54,7 +58,40 @@ xychart-beta
     line [80, 80, 80, 80, 80]
 \`\`\`
 
-> **Note**: The line at 80% represents the minimum acceptable threshold. Dimensions below this line require attention.
+### Option B: ECharts Radar Chart (Yuque, Feishu, Confluence, Custom Systems)
+
+\`\`\`html
+<div id="validation-radar" style="width:450px;height:350px;margin:0 auto;"></div>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<script>
+var chart = echarts.init(document.getElementById('validation-radar'));
+chart.setOption({
+  title: { text: 'Requirements Validation', left: 'center' },
+  radar: {
+    indicator: [
+      { name: 'Authenticity', max: 100 },
+      { name: 'Completeness', max: 100 },
+      { name: 'Consistency', max: 100 },
+      { name: 'Feasibility', max: 100 },
+      { name: 'Verifiability', max: 100 }
+    ],
+    shape: 'polygon',
+    splitNumber: 5
+  },
+  series: [{
+    type: 'radar',
+    data: [{
+      value: [85, 92, 95, 78, 88],
+      name: 'Score',
+      areaStyle: { color: 'rgba(25, 118, 210, 0.3)' },
+      lineStyle: { color: '#1976d2', width: 2 }
+    }]
+  }]
+});
+</script>
+\`\`\`
+
+> **Note**: 80% threshold represents minimum acceptable score. Dimensions below require attention.
 
 ### Score Progress Bars
 
