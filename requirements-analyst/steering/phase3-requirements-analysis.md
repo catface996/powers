@@ -19,12 +19,15 @@ inclusion: agent
 | Success Criteria | Measurable outcomes | SMART criteria list | All requirements |
 | Event Storming | Domain events and commands | Domain model | Complex business logic |
 | Dependency Analysis | Requirement relationships | Dependency graph | Multi-requirement projects |
+| Domain Data Modeling | Entities and relationships | data-model.md | Projects with data entities |
 
 ---
 
 ## Output
 
-**File**: `.kiro/specs/[feature-name]/03-analysis.md`
+**Files**:
+- `.kiro/specs/[feature-name]/03-analysis.md` - User stories, use cases, success criteria, dependencies
+- `.kiro/specs/[feature-name]/data-model.md` - Entity definitions, relationships, state diagrams
 
 > **Dependencies**: See `POWER.md` → File Dependencies for required template and helper files.
 
@@ -168,6 +171,7 @@ inclusion: agent
 3. **Success Criteria Definition**: Define measurable success criteria for each requirement
 4. **Dependency Analysis**: Map requirement dependencies and identify conflicts
 5. **Feasibility Assessment**: Evaluate technical feasibility and risks
+6. **Domain Data Modeling**: Define entities, relationships, and state diagrams in `data-model.md`
 
 ## Professional Qualities You MUST Demonstrate
 
@@ -667,6 +671,105 @@ graph LR
 
 ---
 
+## Method 6: Domain Data Modeling
+
+### Purpose
+
+Create a comprehensive data model that defines all entities, their attributes, relationships, and state lifecycles. This model serves as the foundation for database design and API contracts.
+
+**OUTPUT FILE**: `.kiro/specs/[feature-name]/data-model.md`
+
+**OUTPUT TEMPLATE**: Use `template-data-model.md` for output format.
+
+### When to Create Data Model
+
+| Condition | Action |
+|-----------|--------|
+| New feature with data entities | Create complete data model |
+| Existing entities being modified | Update relevant sections |
+| Simple UI-only changes | May skip (reference existing model) |
+
+### Data Model Components
+
+| Component | Description | Diagram Type |
+|-----------|-------------|--------------|
+| **Entity Definitions** | All entities with attributes | Table format |
+| **Relationships** | Entity relationships and cardinality | ER Diagram |
+| **State Diagrams** | Entity lifecycle states | State Diagram |
+| **Constraints** | Validation rules, referential integrity | Table format |
+| **Data Dictionary** | Standard types, enumerations | Table format |
+
+### Entity Relationship Diagram (Mermaid)
+
+```mermaid
+erDiagram
+    USER ||--o{ ORDER : "places"
+    USER {
+        string id PK
+        string email UK
+        string name
+        enum status
+        datetime created_at
+    }
+    ORDER ||--|{ ORDER_ITEM : "contains"
+    ORDER {
+        string id PK
+        string user_id FK
+        decimal total
+        enum status
+        datetime created_at
+    }
+    ORDER_ITEM {
+        string id PK
+        string order_id FK
+        string product_id FK
+        int quantity
+        decimal price
+    }
+    PRODUCT ||--o{ ORDER_ITEM : "included_in"
+    PRODUCT {
+        string id PK
+        string name
+        decimal price
+        int stock
+    }
+```
+
+### State Diagram (Mermaid)
+
+```mermaid
+stateDiagram-v2
+    [*] --> Draft: Create
+
+    Draft --> Submitted: Submit
+    Draft --> Cancelled: Cancel
+
+    Submitted --> Approved: Approve
+    Submitted --> Rejected: Reject
+
+    Approved --> Active: Activate
+    Rejected --> Draft: Revise
+
+    Active --> Completed: Complete
+    Active --> Cancelled: Cancel
+
+    Completed --> [*]
+    Cancelled --> [*]
+```
+
+### Data Model Checklist
+
+- [ ] All entities from user stories identified
+- [ ] Primary keys defined for all entities
+- [ ] Foreign keys and relationships mapped
+- [ ] Attribute types and constraints specified
+- [ ] State diagrams for entities with lifecycle
+- [ ] Validation rules documented
+- [ ] Data volume estimates provided
+- [ ] Glossary terms defined
+
+---
+
 ## Exit Criteria (NON-NEGOTIABLE)
 
 | Criteria | Standard | Verification | Status |
@@ -676,7 +779,7 @@ graph LR
 | User Story Map | Core user journeys mapped | Verify activity flow | [ ] |
 | Use Case Diagrams | Main use cases documented with Sequence Diagrams | Review interactions | [ ] |
 | **Success Criteria** | SMART criteria defined for key requirements | Verify measurability | [ ] |
-| Domain Model | Bounded contexts identified (if applicable) | Verify aggregates | [ ] |
+| **Data Model** | `data-model.md` created with entities and relationships | Verify ER diagram and state diagrams | [ ] |
 | Dependency Graph | Dependencies mapped | Check for circular | [ ] |
 | Feasibility Assessment | Technical risks evaluated | Risk assessment complete | [ ] |
 

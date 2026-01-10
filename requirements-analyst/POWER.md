@@ -168,6 +168,7 @@ All detailed methodologies are in the `steering/` directory:
 - `template-discovery.md` - Discovery output template
 - `template-sort.md` - Value sorting output template
 - `template-analysis.md` - Analysis output template
+- `template-data-model.md` - Data model output template
 - `template-clarification.md` - Clarification output template
 - `template-validation.md` - Validation output template
 - `template-specification.md` - Specification output template
@@ -190,7 +191,7 @@ All detailed methodologies are in the `steering/` directory:
 |------------|-----------------|--------------|----------------------|
 | `phase1-requirements-discovery.md` | `template-discovery.md` | - | - |
 | `phase2-requirements-value-sorting.md` | `template-sort.md` | - | - |
-| `phase3-requirements-analysis.md` | `template-analysis.md` | `helper-diagram-standards.md` | - |
+| `phase3-requirements-analysis.md` | `template-analysis.md`, `template-data-model.md` | `helper-diagram-standards.md` | - |
 | `phase4-requirements-clarification.md` | `template-clarification.md` | - | - |
 | `phase5-requirements-validation.md` | `template-validation.md` | `helper-multi-role-validation.md` | - |
 | `phase6-requirements-specification.md` | `template-specification.md` | - | `template-prd.md`, `template-openapi.md`, `template-bdd.md`, `template-rtm.md` |
@@ -231,6 +232,7 @@ When validation fails, route to appropriate phase:
 ├── 01-discovery.md      ← Phase 1 output
 ├── 02-sort.md           ← Phase 2 output
 ├── 03-analysis.md       ← Phase 3 output
+├── data-model.md        ← Phase 3 output (data structure definitions)
 ├── 04-clarification.md  ← Phase 4 output
 ├── 05-validation.md     ← Phase 5 output
 ├── 06-specification.md  ← Phase 6 output (summary)

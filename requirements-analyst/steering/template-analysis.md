@@ -4,7 +4,9 @@ inclusion: agent
 
 # Analysis Output Template
 
-**Output File**: `.kiro/specs/[feature-name]/03-analysis.md`
+**Output Files**:
+- `.kiro/specs/[feature-name]/03-analysis.md` - This template
+- `.kiro/specs/[feature-name]/data-model.md` - See `template-data-model.md`
 
 **Standards**: Must follow `helper-diagram-standards.md`
 
@@ -400,7 +402,27 @@ graph TD
 
 ---
 
-## 12. Next Steps
+## 12. Related Artifacts
+
+### Data Model
+
+> **See**: `data-model.md` for complete data structure definitions
+
+| Entity | Description | Status |
+|--------|-------------|--------|
+| [Entity 1] | [Brief description] | Defined |
+| [Entity 2] | [Brief description] | Defined |
+
+**Data Model Contains**:
+- Entity definitions with attributes
+- Entity relationships (ER diagram)
+- State diagrams for entity lifecycles
+- Validation rules and constraints
+- Data dictionary
+
+---
+
+## 13. Next Steps
 
 - [ ] Proceed to Phase 4: Clarify (Requirements Clarification)
 - [ ] OR if iterating: Return to Phase 4/5 with updated analysis
