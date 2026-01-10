@@ -204,11 +204,25 @@ All detailed methodologies are in the `steering/` directory:
 
 ### Cross-Phase References
 
-| Scenario | Required Files |
-|----------|----------------|
-| **Iterative Analysis** (Phase 3 after Phase 4/5) | Load existing `04-clarification.md` and/or `05-validation.md` if they exist |
-| **Re-validation** (Phase 5 after updates) | Load updated `03-analysis.md` |
-| **Custom Templates** (Phase 6) | Check `.kiro/templates/` and `~/.kiro/templates/` for user templates |
+| Scenario | Required Files | Action |
+|----------|----------------|--------|
+| **Iterative Analysis** (Phase 3 after Phase 4/5) | Load `04-clarification.md` and/or `05-validation.md` | Apply clarifications and validation findings |
+| **Re-clarification** (Phase 4 after Phase 5) | Load `05-validation.md` | Focus on failed validation dimensions |
+| **Re-validation** (Phase 5 after updates) | Load updated `03-analysis.md` | Verify fixes address previous failures |
+| **Custom Templates** (Phase 6) | Check `.kiro/templates/` and `~/.kiro/templates/` | Use user templates if available |
+
+### Validation Failure Routing
+
+When validation fails, route to appropriate phase:
+
+| Failed Dimension | Route To | Reason |
+|------------------|----------|--------|
+| Authenticity | Phase 4 (Clarify) | Need stakeholder confirmation |
+| Completeness (missing) | Phase 3 (Analyze) | Need to add requirements |
+| Completeness (unclear) | Phase 4 (Clarify) | Need to resolve ambiguities |
+| Consistency | Phase 3 (Analyze) | Need to restructure requirements |
+| Feasibility | Phase 3 (Analyze) or Phase 4 (Clarify) | Depends on issue type |
+| Verifiability | Phase 4 (Clarify) | Need acceptance criteria |
 
 ### Output Directory Structure
 

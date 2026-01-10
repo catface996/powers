@@ -601,27 +601,57 @@ The radar chart section MUST include:
 ---
 ## Validation Session Complete
 
+### Validation Result Summary
+
+| Dimension | Score | Status | Issues |
+|-----------|-------|--------|--------|
+| Authenticity | [X]% | ✅/⚠️/❌ | [Count] |
+| Completeness | [X]% | ✅/⚠️/❌ | [Count] |
+| Consistency | [X]% | ✅/⚠️/❌ | [Count] |
+| Feasibility | [X]% | ✅/⚠️/❌ | [Count] |
+| Verifiability | [X]% | ✅/⚠️/❌ | [Count] |
+
+**Overall Status**: [PASS / FAIL]
+
+---
+
 **What would you like to do next?**
 
 | Option | Action | Description |
 |--------|--------|-------------|
-| **A** | **Specify** | Proceed to Specification - write PRD, API spec, BDD scenarios |
+| **A** | **Specify** | Proceed to Specification - write PRD, API spec, BDD, RTM |
 | **B** | **Validate** | Continue Validation - address remaining issues or re-validate |
-| **C** | **Clarify** | Return to Clarification - resolve new ambiguities discovered |
+| **C** | **Clarify** | Return to Clarification - resolve ambiguities causing validation failures |
+| **D** | **Analyze** | Return to Analysis - update requirements based on validation findings |
 
 **Recommendation**: [Your recommendation based on validation results]
 
+**Reason**: [Why this recommendation - reference specific failed dimensions/issues]
+
 ---
-Reply with **A**, **B**, or **C**, or describe what you'd like to do.
+Reply with **A**, **B**, **C**, or **D**, or describe what you'd like to do.
 ```
 
 ### When to Recommend Each Option
 
-| Recommend | Condition |
-|-----------|-----------|
-| **A (Specify)** | All 5 dimensions pass (✅), no critical issues, sign-off obtained |
-| **B (Validate)** | Critical/major issues remain, feasibility concerns need resolution |
-| **C (Clarify)** | New ambiguities discovered, authenticity gaps need stakeholder input |
+| Recommend | Condition | Typical Failed Dimensions |
+|-----------|-----------|---------------------------|
+| **A (Specify)** | All 5 dimensions ≥80%, no critical issues | None |
+| **B (Validate)** | Minor issues remain, need to verify fixes | Any with minor issues |
+| **C (Clarify)** | Ambiguities, unclear requirements, stakeholder input needed | Authenticity, Completeness (unclear parts) |
+| **D (Analyze)** | Major gaps in requirements, need restructuring or new requirements | Completeness (missing), Consistency, Feasibility |
+
+### Validation Failure Routing Guide
+
+| Failed Dimension | Primary Issue | Recommended Action |
+|------------------|---------------|-------------------|
+| **Authenticity** | Unverified user needs | **C (Clarify)** - Need stakeholder confirmation |
+| **Completeness** | Missing requirements | **D (Analyze)** - Need to add/expand requirements |
+| **Completeness** | Unclear specifications | **C (Clarify)** - Need to resolve ambiguities |
+| **Consistency** | Conflicting requirements | **D (Analyze)** - Need to restructure/resolve conflicts |
+| **Feasibility** | Technical blockers | **D (Analyze)** - Need to redesign approach |
+| **Feasibility** | Resource/schedule issues | **C (Clarify)** - Need stakeholder input on scope |
+| **Verifiability** | Missing acceptance criteria | **C (Clarify)** - Need to define test criteria |
 
 ### Option Flows
 
@@ -632,16 +662,22 @@ stateDiagram-v2
     Validate --> OptionPrompt: Session Complete
 
     state OptionPrompt {
-        [*] --> ShowOptions
+        [*] --> EvaluateResults
+        EvaluateResults --> ShowOptions
         ShowOptions --> WaitUserChoice
     }
 
-    OptionPrompt --> Specify: User chooses A
-    OptionPrompt --> Validate: User chooses B
-    OptionPrompt --> Clarify: User chooses C
+    OptionPrompt --> Specify: A (All Pass)
+    OptionPrompt --> Validate: B (Minor Issues)
+    OptionPrompt --> Clarify: C (Ambiguities)
+    OptionPrompt --> Analyze: D (Major Gaps)
 
     Clarify --> Validate: After clarification
+    Analyze --> Clarify: After analysis update
+    Analyze --> Validate: Direct re-validation
     Specify --> [*]: Requirements specified
 
     note right of OptionPrompt: MUST show options\nafter EVERY session
+    note left of Analyze: Return here for:\n- Missing requirements\n- Conflicts\n- Feasibility issues
+    note left of Clarify: Return here for:\n- Ambiguities\n- Stakeholder input\n- Acceptance criteria
 ```

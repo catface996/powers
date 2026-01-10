@@ -41,6 +41,77 @@ inclusion: agent
 
 ---
 
+## Validation Failure Check (PRIORITY)
+
+**CRITICAL**: Before starting clarification, check if `05-validation.md` exists. If it does, this is a **re-clarification** session triggered by validation failures.
+
+### Step 1: Check for Validation File
+
+```bash
+ls .kiro/specs/[feature-name]/05-validation.md 2>/dev/null
+```
+
+### Step 2: If Validation File Exists
+
+**You MUST:**
+
+1. **Load and analyze** `05-validation.md`
+2. **Extract failed dimensions** - Identify dimensions with score < 80% or status ❌/⚠️
+3. **List specific issues** - Extract the "Negative Findings" from each failed dimension
+4. **Prioritize clarification** - Focus questions on issues causing validation failures
+
+### Step 3: Display Validation Failure Summary
+
+```markdown
+---
+## Re-Clarification Session (Post-Validation)
+
+I detected a previous validation report. Here are the **validation failures** that need clarification:
+
+### Failed Dimensions Summary
+
+| Dimension | Score | Status | Key Issues |
+|-----------|-------|--------|------------|
+| [Dimension] | [X]% | ❌/⚠️ | [Issue summary] |
+| ... | ... | ... | ... |
+
+### Priority Clarification Areas
+
+Based on validation failures, I will focus clarification on:
+
+1. **[Issue Category]**: [Specific issue from validation]
+   - Related Requirements: [REQ-XXX, REQ-YYY]
+   - Validation Finding: "[Quote from negative findings]"
+
+2. **[Issue Category]**: [Specific issue from validation]
+   - Related Requirements: [REQ-XXX]
+   - Validation Finding: "[Quote from negative findings]"
+
+---
+Proceeding with targeted clarification questions...
+```
+
+### Validation-to-Clarification Mapping
+
+| Failed Dimension | Clarification Focus |
+|------------------|---------------------|
+| **Authenticity** | Verify user needs, confirm stakeholder requirements |
+| **Completeness** | Fill missing specifications, clarify unclear parts |
+| **Consistency** | Resolve conflicts, align terminology |
+| **Feasibility** | Clarify scope, discuss constraints with stakeholders |
+| **Verifiability** | Define acceptance criteria, quantify requirements |
+
+### Question Priority Order (Re-Clarification)
+
+When re-clarifying after validation failure:
+
+1. **First**: Questions directly addressing validation failures (highest priority)
+2. **Second**: Questions about related requirements affected by failures
+3. **Third**: New ambiguities discovered during validation
+4. **Last**: Standard ambiguity taxonomy items (if question budget remains)
+
+---
+
 ## Ambiguity Taxonomy (MUST SCAN)
 
 Perform a structured ambiguity scan using this taxonomy:
