@@ -96,6 +96,71 @@ inclusion: agent
 
 ---
 
+## MANDATORY: Reference Existing Clarification & Validation Files
+
+**CRITICAL**: If clarification or validation files already exist, you MUST load and reference them.
+
+### Check for Existing Files
+
+```
+.kiro/specs/[feature-name]/
+├── 04-clarification.md  ← If exists, MUST reference
+└── 05-validation.md     ← If exists, MUST reference
+```
+
+### When Files Exist (Iterative Analysis)
+
+| File Exists | Action Required |
+|-------------|-----------------|
+| `04-clarification.md` | Load and apply all resolved clarifications to analysis |
+| `05-validation.md` | Load and address all validation findings in analysis |
+| Both files exist | This is an iteration - update analysis based on both |
+
+### How to Apply Existing Clarifications
+
+1. **Read `04-clarification.md`** completely
+2. **Extract all resolved Q&A** from the clarification log
+3. **Apply to analysis**:
+   - User Stories must reflect clarified scope
+   - Use Cases must incorporate clarified flows
+   - Success Criteria must align with clarified requirements
+   - Mark in analysis: `[Updated per Clarification Q1]`
+
+### How to Apply Existing Validation Findings
+
+1. **Read `05-validation.md`** completely
+2. **Extract all issues and findings** by dimension:
+   - Authenticity issues → Verify requirement sources
+   - Completeness gaps → Fill missing specifications
+   - Consistency conflicts → Resolve contradictions
+   - Feasibility concerns → Adjust scope or approach
+   - Verifiability issues → Add measurable criteria
+3. **Apply to analysis**:
+   - Address each validation issue in relevant section
+   - Mark in analysis: `[Updated per Validation V-001]`
+
+### Cross-Reference Requirements
+
+```markdown
+## Analysis Update Log
+
+### Applied from 04-clarification.md
+| Q# | Clarification | Applied To | Section |
+|----|---------------|------------|---------|
+| Q1 | [Summary] | US-001 | User Stories |
+| Q2 | [Summary] | UC-002 | Use Cases |
+
+### Applied from 05-validation.md
+| Issue | Finding | Applied To | Section |
+|-------|---------|------------|---------|
+| V-001 | [Summary] | SC-003 | Success Criteria |
+| V-002 | [Summary] | REQ-005 | Dependency Analysis |
+```
+
+**WARNING**: Ignoring existing clarification or validation files will result in inconsistent requirements and rework.
+
+---
+
 ## Your Tasks (NON-NEGOTIABLE)
 
 1. **User Story Mapping**: Create complete user story maps

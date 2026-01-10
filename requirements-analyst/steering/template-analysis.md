@@ -342,7 +342,35 @@ graph TD
 
 ---
 
-## 10. Analysis Summary
+## 10. Analysis Update Log (If Iterating)
+
+> **Note**: Complete this section ONLY if `04-clarification.md` or `05-validation.md` already exist.
+
+### Applied from 04-clarification.md
+
+| Q# | Clarification Summary | Applied To | Section Updated |
+|----|----------------------|------------|-----------------|
+| Q1 | [Brief summary of clarification] | US-XXX | User Stories |
+| Q2 | [Brief summary of clarification] | UC-XXX | Use Cases |
+
+### Applied from 05-validation.md
+
+| Issue ID | Validation Finding | Applied To | Section Updated |
+|----------|-------------------|------------|-----------------|
+| V-001 | [Brief summary of finding] | SC-XXX | Success Criteria |
+| V-002 | [Brief summary of finding] | REQ-XXX | Dependency Analysis |
+
+### Iteration History
+
+| Version | Date | Trigger | Changes Made |
+|---------|------|---------|--------------|
+| v1.0 | [Date] | Initial analysis | Created |
+| v1.1 | [Date] | Post-clarification | Updated per Q1-Q3 |
+| v1.2 | [Date] | Post-validation | Addressed V-001, V-002 |
+
+---
+
+## 11. Analysis Summary
 
 **User Roles Identified**:
 - [Role 1]
@@ -364,7 +392,8 @@ graph TD
 
 ---
 
-## Next Steps
+## 12. Next Steps
 
 - [ ] Proceed to Phase 4: Clarify (Requirements Clarification)
+- [ ] OR if iterating: Return to Phase 4/5 with updated analysis
 ```
