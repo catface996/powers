@@ -128,20 +128,27 @@ Ready to proceed. Type a phase command or describe your requirements.
 
 ---
 
-## Phase Trigger Commands
+## Phase Intent Recognition
 
-Users can directly trigger any phase using the following commands:
+**CRITICAL**: Use semantic understanding to recognize user intent, NOT keyword matching.
 
-| Phase | Command | Description |
-|-------|---------|-------------|
-| Phase 1 | **Discover** | Start requirements discovery |
-| Phase 2 | **Sort** | Start value sorting |
-| Phase 3 | **Analyze** | Start requirements analysis |
-| Phase 4 | **Clarify** | Start requirements clarification |
-| Phase 5 | **Validate** | Start requirements validation |
-| Phase 6 | **Specify** | Start requirements specification |
+When user expresses intent to perform a specific phase, load the corresponding steering file.
 
-When user inputs any trigger command, load the corresponding steering file and begin that phase.
+| Phase | User Intent | Example Expressions |
+|-------|-------------|---------------------|
+| Phase 1 | Want to **discover/collect** requirements from stakeholders | "帮我做需求发现", "收集用户需求", "I need to gather requirements", "了解用户需要什么" |
+| Phase 2 | Want to **prioritize/sort** requirements by value | "给需求排优先级", "哪些需求更重要", "prioritize these requirements", "做价值排序" |
+| Phase 3 | Want to **analyze** requirements into stories/use cases | "进行需求分析", "分析这个需求", "analyze the requirements", "写用户故事" |
+| Phase 4 | Want to **clarify** ambiguous requirements | "澄清一下需求", "这个需求不清楚", "clarify requirements", "有些地方需要确认" |
+| Phase 5 | Want to **validate/review** requirements quality | "验证需求", "检查需求是否完整", "validate requirements", "审查需求质量" |
+| Phase 6 | Want to **formalize/specify** requirements into PRD | "生成PRD", "输出需求规格", "create specification", "写需求文档" |
+
+### Intent Recognition Rules
+
+1. **Understand meaning, not keywords**: "进行需求分析" and "analyze the requirements" have the same intent → Phase 3
+2. **Context matters**: If user provides raw requirements and asks to "analyze", go to Phase 3 directly
+3. **Skip completed phases**: If analysis file exists and user asks to "validate", go to Phase 5
+4. **Ask when ambiguous**: If intent is unclear, ask user which phase they want
 
 ---
 
