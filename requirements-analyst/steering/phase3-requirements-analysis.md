@@ -144,25 +144,52 @@ Each user story MUST be:
 
 ### User Story Map Template
 
+```mermaid
+graph TB
+    subgraph Activities["USER ACTIVITY FLOW →"]
+        direction LR
+        A1["📦 Activity 1<br/>Browse"]
+        A2["🔍 Activity 2<br/>Select"]
+        A3["💳 Activity 3<br/>Purchase"]
+        A4["📬 Activity 4<br/>Receive"]
+        A5["🛠️ Activity 5<br/>Support"]
+        A1 --> A2 --> A3 --> A4 --> A5
+    end
+
+    subgraph MVP["MVP Release"]
+        direction LR
+        S11[US-1.1] --> S21[US-2.1] --> S31[US-3.1] --> S41[US-4.1]
+        S12[US-1.2] --> S22[US-2.2] --> S32[US-3.2]
+    end
+
+    subgraph V11["Version 1.1"]
+        direction LR
+        S13[US-1.3] --> S23[US-2.3] --> S33[US-3.3] --> S42[US-4.2] --> S51[US-5.1]
+    end
+
+    subgraph V20["Version 2.0"]
+        direction LR
+        S14[US-1.4] --> S24[US-2.4] --> S35[US-3.5] --> S43[US-4.3] --> S52[US-5.2]
+    end
+
+    A1 -.-> S11
+    A1 -.-> S13
+    A1 -.-> S14
+
+    style A1 fill:#e1f5fe,stroke:#01579b
+    style A2 fill:#e1f5fe,stroke:#01579b
+    style A3 fill:#e1f5fe,stroke:#01579b
+    style A4 fill:#e1f5fe,stroke:#01579b
+    style A5 fill:#e1f5fe,stroke:#01579b
 ```
-┌─────────────────────────────────────────────────────────────────────┐
-│                         USER ACTIVITY FLOW                          │
-├─────────────┬─────────────┬─────────────┬─────────────┬────────────┤
-│  Activity 1 │  Activity 2 │  Activity 3 │  Activity 4 │ Activity 5 │
-│  (Browse)   │  (Select)   │  (Purchase) │  (Receive)  │ (Support)  │
-├─────────────┼─────────────┼─────────────┼─────────────┼────────────┤
-│ ─── MVP ─── │ ─── MVP ─── │ ─── MVP ─── │ ─── MVP ─── │ ────────── │
-│ Story 1.1   │ Story 2.1   │ Story 3.1   │ Story 4.1   │            │
-│ Story 1.2   │ Story 2.2   │ Story 3.2   │             │            │
-├─────────────┼─────────────┼─────────────┼─────────────┼────────────┤
-│ ─── V1.1 ── │ ─── V1.1 ── │ ─── V1.1 ── │ ─── V1.1 ── │ ─── V1.1 ─ │
-│ Story 1.3   │ Story 2.3   │ Story 3.3   │ Story 4.2   │ Story 5.1  │
-│             │             │ Story 3.4   │             │            │
-├─────────────┼─────────────┼─────────────┼─────────────┼────────────┤
-│ ─── V2.0 ── │ ─── V2.0 ── │ ─── V2.0 ── │ ─── V2.0 ── │ ─── V2.0 ─ │
-│ Story 1.4   │ Story 2.4   │ Story 3.5   │ Story 4.3   │ Story 5.2  │
-└─────────────┴─────────────┴─────────────┴─────────────┴────────────┘
-```
+
+**Story Map Structure:**
+| Row | Description | Priority |
+|-----|-------------|----------|
+| **Activities** | User journey steps (left to right) | - |
+| **MVP** | Minimum stories to launch | P0 |
+| **V1.1** | First enhancement release | P1 |
+| **V2.0** | Future features | P2 |
 
 ### Story Map Documentation
 
@@ -197,30 +224,40 @@ Each user story MUST be:
 
 ### Use Case Diagram Elements
 
+```mermaid
+graph TB
+    subgraph System["System Boundary"]
+        direction TB
+        UCA((Use Case A))
+        UCB((Use Case B))
+        UCC((Use Case C))
+        UCD((Use Case D))
+
+        UCA -->|<<include>>| UCC
+        UCA --> UCB
+        UCB -.->|<<extend>>| UCD
+    end
+
+    Actor1[/"👤 Actor 1"\]
+    Actor2[/"👤 Actor 2"\]
+
+    Actor1 --> UCA
+    Actor2 --> UCB
+
+    style UCA fill:#e1f5fe,stroke:#01579b
+    style UCB fill:#e1f5fe,stroke:#01579b
+    style UCC fill:#e1f5fe,stroke:#01579b
+    style UCD fill:#fff3e0,stroke:#e65100
 ```
-┌─────────────────────────────────────────┐
-│              System Boundary            │
-│                                         │
-│    ┌─────────┐      ┌─────────┐        │
-│    │ Use Case│      │ Use Case│        │
-│    │    A    │─────►│    B    │        │
-│    └─────────┘      └─────────┘        │
-│         │                │              │
-│         │ <<include>>    │ <<extend>>   │
-│         ▼                ▼              │
-│    ┌─────────┐      ┌─────────┐        │
-│    │ Use Case│      │ Use Case│        │
-│    │    C    │      │    D    │        │
-│    └─────────┘      └─────────┘        │
-│                                         │
-└─────────────────────────────────────────┘
-     │                           │
-     │                           │
-  ┌──┴──┐                     ┌──┴──┐
-  │Actor│                     │Actor│
-  │  1  │                     │  2  │
-  └─────┘                     └─────┘
-```
+
+**Diagram Elements:**
+| Element | Mermaid Syntax | Description |
+|---------|----------------|-------------|
+| Actor | `[/"👤 Name"\]` | Stick figure representation |
+| Use Case | `((Name))` | Ellipse shape |
+| System Boundary | `subgraph` | Dashed rectangle container |
+| Include | `-->\|<<include>>\|` | Mandatory dependency |
+| Extend | `-.->\|<<extend>>\|` | Optional extension |
 
 ### Use Case Document Template
 
@@ -462,16 +499,44 @@ graph LR
 | REQ-012 | REQ-003 | Optional | Degraded experience |
 
 ### Dependency Graph
-```
-REQ-001 ──┐
-          ├──► REQ-005 ──► REQ-008 ──► REQ-011
-REQ-002 ──┘        │
-                   └──► REQ-009
-REQ-003 ──────────────► REQ-012 (optional)
+
+```mermaid
+graph LR
+    REQ001[REQ-001]
+    REQ002[REQ-002]
+    REQ003[REQ-003]
+    REQ005[REQ-005]
+    REQ008[REQ-008]
+    REQ009[REQ-009]
+    REQ011[REQ-011]
+    REQ012[REQ-012]
+
+    REQ001 --> REQ005
+    REQ002 --> REQ005
+    REQ005 --> REQ008
+    REQ005 --> REQ009
+    REQ008 --> REQ011
+    REQ003 -.->|optional| REQ012
+
+    style REQ001 fill:#e1f5fe,stroke:#01579b
+    style REQ002 fill:#e1f5fe,stroke:#01579b
+    style REQ011 fill:#e8f5e9,stroke:#1b5e20
+    style REQ012 fill:#fff3e0,stroke:#e65100
 ```
 
 ### Critical Path
-REQ-001 → REQ-005 → REQ-008 → REQ-011 (blocks release)
+
+```mermaid
+graph LR
+    CP1[REQ-001] --> CP2[REQ-005] --> CP3[REQ-008] --> CP4[REQ-011]
+
+    style CP1 fill:#ffebee,stroke:#b71c1c
+    style CP2 fill:#ffebee,stroke:#b71c1c
+    style CP3 fill:#ffebee,stroke:#b71c1c
+    style CP4 fill:#ffebee,stroke:#b71c1c
+```
+
+**Critical Path**: REQ-001 → REQ-005 → REQ-008 → REQ-011 (blocks release)
 
 ### Risks Identified
 | Risk | Requirements | Mitigation |
