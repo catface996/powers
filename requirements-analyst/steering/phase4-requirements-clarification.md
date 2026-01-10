@@ -14,8 +14,8 @@ inclusion: agent
 
 | Aspect | Guideline |
 |--------|-----------|
-| Max Questions | 5 per session |
-| Question Format | Multiple-choice (2-4 options) or Short phrase (<=5 words) |
+| Goal | Clarify ALL critical ambiguities (no fixed limit) |
+| Question Format | Multiple-choice (2-4 options) or Short phrase |
 | Delivery | ONE question at a time, wait for answer |
 | Output Files | `04-clarification.md` (log) + update `03-analysis.md` |
 
@@ -106,7 +106,7 @@ When re-clarifying after validation failure:
 1. **First**: Questions directly addressing validation failures (highest priority)
 2. **Second**: Questions about related requirements affected by failures
 3. **Third**: New ambiguities discovered during validation
-4. **Last**: Standard ambiguity taxonomy items (if question budget remains)
+4. **Last**: Standard ambiguity taxonomy items
 
 ---
 
@@ -191,7 +191,7 @@ Read `03-analysis.md` and scan for ambiguities using the taxonomy above.
 
 ### Step 2: Generate Prioritized Questions
 
-Create a prioritized queue of clarification questions (maximum 5):
+Create a prioritized queue of clarification questions:
 
 **Question Constraints**:
 - **Answerable**: Multiple-choice (2-4 options) OR Short phrase (<=5 words)
@@ -285,7 +285,6 @@ After recording in `04-clarification.md`:
 Stop asking questions when ANY of these apply:
 - All critical ambiguities resolved
 - User signals completion ("done", "enough", "no more")
-- Reached 5 questions maximum
 - Remaining ambiguities are non-blocking (can defer to implementation)
 
 ### Step 6: Validation
@@ -295,7 +294,6 @@ After each write, verify:
 - [ ] Analysis document updated
 - [ ] No contradictory statements introduced
 - [ ] Terminology consistent
-- [ ] Total questions <= 5
 
 ### Step 7: Completion Report
 
@@ -369,7 +367,6 @@ Based on the clarification results, you can choose one of the following:
 
 - **No ambiguities found**: "No critical ambiguities detected. Recommend proceeding to Phase 5: Validate."
 - **Analysis file missing**: "Please complete Phase 3: Analyze first."
-- **Never exceed 5 questions**: Prioritize most impactful ambiguities
 - **Respect user signals**: Stop immediately if user says "done" or "enough"
 - **Avoid speculation**: Don't ask about tech stack unless it blocks functional clarity
 
@@ -383,7 +380,7 @@ Based on the clarification results, you can choose one of the following:
 | All Q&A Recorded | Complete details for each question | Review log | [ ] |
 | Analysis Updated | Clarifications applied to `03-analysis.md` | Cross-reference | [ ] |
 | No Contradictions | Consistent statements | Review both files | [ ] |
-| Max 5 Questions | Question count <= 5 | Count in log | [ ] |
+| Critical Ambiguities | All critical ambiguities resolved | Review coverage | [ ] |
 
 ---
 
