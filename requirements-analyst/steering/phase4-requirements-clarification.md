@@ -19,6 +19,14 @@ inclusion: agent
 | Delivery | ONE question at a time, wait for answer |
 | Output Files | `04-clarification.md` (log) + update `03-analysis.md` |
 
+### ⚠️ CRITICAL: Update Both Files After EACH Answer
+
+**After user answers EACH question, you MUST IMMEDIATELY:**
+1. Write Q&A to `04-clarification.md`
+2. Update corresponding requirement in `03-analysis.md`
+
+**DO NOT** ask next question until BOTH files are updated.
+
 ---
 
 ## Output
