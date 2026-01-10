@@ -20,7 +20,12 @@ author: "Kiro User"
 
 ### 1. Language Selection (First)
 
-Ask user: **A** (English) or **B** (中文). **Wait for response. Do NOT proceed until confirmed.** Use selected language for ALL subsequent outputs.
+Ask user: **A** (English) or **B** (中文). **Wait for response. Do NOT proceed until confirmed.**
+
+**Language applies to**:
+- All conversation outputs
+- All generated document content
+- All template headings and labels (translate templates to selected language)
 
 ### 2. Load Core Protocol
 
