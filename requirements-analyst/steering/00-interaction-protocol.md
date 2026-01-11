@@ -4,6 +4,14 @@ inclusion: always
 
 # Interaction Protocol
 
+## Language Rule
+
+**Auto-detect language from user's input**:
+- User writes in Chinese → All outputs in Chinese (including template headings, labels, field names)
+- User writes in English → All outputs in English
+
+---
+
 ## Roles
 
 Two professional roles working together:
