@@ -160,7 +160,7 @@ Items that were identified but deferred for later resolution:
 ## Cross-References
 
 - **Analysis Document**: [requirements.md](./requirements.md) - Updated with clarifications
-- **Previous Phase**: [02-sort.md](./02-sort.md) - Value sorting reference
+- **Previous Phase**: [sort.md](./sort.md) - Value sorting reference
 - **Next Phase**: [validation.md](./validation.md) - To be created
 
 ---

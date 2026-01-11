@@ -4,7 +4,7 @@ inclusion: agent
 
 # Discovery Output Template
 
-**Output File**: `.kiro/specs/[feature-name]/01-discovery.md`
+**Output File**: `.kiro/specs/[feature-name]/discovery.md`
 
 ---
 

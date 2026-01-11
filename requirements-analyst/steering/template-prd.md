@@ -9,8 +9,8 @@ inclusion: agent
 **Output File**: `.kiro/specs/[feature-name]/prd.md`
 
 **Source Documents**:
-- `01-discovery.md` - Stakeholder and context information
-- `02-sort.md` - Priority and release planning
+- `discovery.md` - Stakeholder and context information
+- `sort.md` - Priority and release planning
 - `requirements.md` - User stories, use cases, domain model
 - `clarification.md` - Clarification decisions
 - `validation.md` - Validation results
@@ -49,7 +49,7 @@ inclusion: agent
 
 | Document | Location | Description |
 |----------|----------|-------------|
-| Discovery | `.kiro/specs/[name]/01-discovery.md` | Stakeholder analysis |
+| Discovery | `.kiro/specs/[name]/discovery.md` | Stakeholder analysis |
 | Analysis | `.kiro/specs/[name]/requirements.md` | Detailed requirements |
 | Clarification | `.kiro/specs/[name]/clarification.md` | Decision log |
 | Validation | `.kiro/specs/[name]/validation.md` | Validation report |

@@ -27,7 +27,7 @@ inclusion: agent
 
 ## Output
 
-**File**: `.kiro/specs/[feature-name]/01-discovery.md`
+**File**: `.kiro/specs/[feature-name]/discovery.md`
 
 > **Dependencies**: See `POWER.md` → File Dependencies for required template and helper files.
 

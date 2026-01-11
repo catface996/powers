@@ -44,8 +44,8 @@ For quick requirements:
 
 ```
 .kiro/specs/[feature-name]/
-├── 01-discovery.md
-├── 02-sort.md
+├── discovery.md
+├── sort.md
 ├── requirements.md
 ├── data-model.md
 ├── clarification.md

@@ -4,7 +4,7 @@ inclusion: agent
 
 # Value Sorting Output Template
 
-**Output File**: `.kiro/specs/[feature-name]/02-sort.md`
+**Output File**: `.kiro/specs/[feature-name]/sort.md`
 
 ---
 

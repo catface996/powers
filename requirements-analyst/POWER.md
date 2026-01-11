@@ -39,8 +39,8 @@ After language confirmed, load `steering/00-interaction-protocol.md`.
 2. If exists: List specs with phase status, let user select or create new
 3. If empty: Ask for new spec name (lowercase, alphanumeric, hyphens only)
 4. Detect phase status:
-   - `01-discovery.md` → Phase 1 done
-   - `02-sort.md` → Phase 2 done
+   - `discovery.md` → Phase 1 done
+   - `sort.md` → Phase 2 done
    - `requirements.md` → Phase 3 done
    - `clarification.md` → Phase 4 done
    - `validation.md` → Phase 5 done
@@ -188,8 +188,8 @@ Before submitting ANY output, verify:
 
 ```
 .kiro/specs/[spec-name]/
-├── 01-discovery.md
-├── 02-sort.md
+├── discovery.md
+├── sort.md
 ├── requirements.md
 ├── data-model.md
 ├── clarification.md

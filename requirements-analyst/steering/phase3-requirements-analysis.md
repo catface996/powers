@@ -92,7 +92,7 @@ inclusion: agent
 
 **MUST pass this check before starting**:
 
-- [ ] **Phase 2 completed?** Verify `02-sort.md` exists with value sorting matrix
+- [ ] **Phase 2 completed?** Verify `sort.md` exists with value sorting matrix
 - [ ] **Inputs available?** Confirm prioritization (MoSCoW/RICE) is complete
 - [ ] **Unclear items identified?** List requirements flagged for clarification
 
