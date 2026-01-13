@@ -73,10 +73,15 @@ This document defines the mandatory standards for UML diagrams and documentation
 
 **DO**:
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': { 'background': '#000066' }}}%%
 graph TD
     A["External Library (G6/Cytoscape)"]
     B["Config File [JSON]"]
     C["Status {Active}"]
+
+    style A fill:none,stroke:#32FF96,stroke-width:2px,rx:6
+    style B fill:none,stroke:#FFFF66,stroke-width:2px,rx:6
+    style C fill:none,stroke:#FF6666,stroke-width:2px,rx:6
 ```
 
 **DO NOT**:
@@ -91,8 +96,11 @@ graph TD
 
 **DO**:
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': { 'background': '#000066' }}}%%
 graph TD
     A["Line 1<br/>Line 2"]
+
+    style A fill:none,stroke:#32FF96,stroke-width:2px,rx:6
 ```
 
 **DO NOT**:
@@ -132,6 +140,7 @@ Before generating ANY Mermaid diagram, verify:
 ### Mermaid Syntax for Use Case Diagram
 
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': { 'background': '#000066' }}}%%
 graph TB
     subgraph System["System Boundary"]
         direction TB
@@ -149,9 +158,12 @@ graph TB
     Actor1 --> UC1
     Actor2 --> UC2
 
-    style UC1 fill:#e1f5fe
-    style UC2 fill:#e1f5fe
-    style UC3 fill:#fff3e0
+    %% Cyclic theme colors, no fill, stroke only
+    style UC1 fill:none,stroke:#32FF96,stroke-width:2px
+    style UC2 fill:none,stroke:#FFFF66,stroke-width:2px
+    style UC3 fill:none,stroke:#FF6666,stroke-width:2px
+    style Actor1 fill:none,stroke:#FB00FF,stroke-width:2px
+    style Actor2 fill:none,stroke:#902FF0,stroke-width:2px
 ```
 
 ---
@@ -194,6 +206,7 @@ stateDiagram-v2
 ### Alternative: Flowchart with Swim Lanes
 
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': { 'background': '#000066' }}}%%
 flowchart TB
     subgraph User["👤 User"]
         A1[Start Request]
@@ -208,6 +221,12 @@ flowchart TB
     A1 --> A2
     A2 --> A3
     A3 --> A4
+
+    %% Cyclic theme colors, no fill, stroke only, rx:6
+    style A1 fill:none,stroke:#32FF96,stroke-width:2px,rx:6
+    style A2 fill:none,stroke:#FFFF66,stroke-width:2px,rx:6
+    style A3 fill:none,stroke:#FF6666,stroke-width:2px,rx:6
+    style A4 fill:none,stroke:#FB00FF,stroke-width:2px,rx:6
 ```
 
 ---
@@ -484,38 +503,133 @@ Core Activities: Resource topology management, Agent configuration, Monitoring..
 
 ---
 
-## 7. Diagram Quality Standards
+## 7. Diagram Visual Standards (MANDATORY)
 
-### MANDATORY Rules
+### ⛔ Color and Style Rules (MUST FOLLOW)
 
-1. **All UML diagrams MUST follow standard syntax**
-2. **Use Mermaid syntax for all diagrams**
-3. **Apply appropriate styling and color coding**:
-   - Primary elements: `fill:#e1f5fe` (light blue)
-   - Secondary elements: `fill:#f3e5f5` (light purple)
-   - Warning/attention: `fill:#fff3e0` (light orange)
-   - Success/completion: `fill:#e8f5e9` (light green)
-   - Error/critical: `fill:#ffebee` (light red)
+**CRITICAL**: All diagrams MUST strictly follow these visual rules.
 
-4. **Complex processes MUST be decomposed** into multiple diagrams
-5. **Each diagram MUST have a clear title**
+#### 7.1 Canvas Background
+
+| Property | Value | Description |
+|----------|-------|-------------|
+| **Background Color** | `#000066` | Dark blue canvas background |
+
+#### 7.2 Stroke Width (Line Thickness)
+
+| Level | Width | Usage |
+|-------|-------|-------|
+| **Primary** | `3px` | Main elements, key nodes, important connections |
+| **Secondary** | `2px` | Supporting elements, standard connections |
+| **Tertiary** | `1px` | Minor elements, annotations, subtle connections |
+
+#### 7.3 Fill Style
+
+| Rule | Description |
+|------|-------------|
+| **NO Background Fill** | Shapes MUST NOT have filled backgrounds |
+| **Stroke Only** | Use stroke color only, keep interior transparent |
+| **Example** | `fill:none` or `fill:transparent` |
+
+#### 7.4 Rectangle Border Radius
+
+| Property | Value | Description |
+|----------|-------|-------------|
+| **Border Radius (rx)** | `6` | Rectangle corner radius |
+| **❌ PROHIBITED** | `12` | Do NOT use radius of 12 |
+
+#### 7.5 Theme Colors (Cyclic Usage)
+
+**Primary Palette** - Use these colors IN ORDER, cycling through for same-level nodes:
+
+| Order | Color Code | Color Name | Usage |
+|-------|------------|------------|-------|
+| 1st | `#32FF96` | Neon Green | First element at each level |
+| 2nd | `#FFFF66` | Yellow | Second element at each level |
+| 3rd | `#FF6666` | Coral Red | Third element at each level |
+| 4th | `#FB00FF` | Magenta | Fourth element at each level |
+| 5th | `#902FF0` | Purple | Fifth element at each level |
+
+**Cyclic Usage Rule**:
+- When there are multiple nodes at the SAME hierarchy level, cycle through colors 1→2→3→4→5→1→2→...
+- Example: 6 sibling nodes would use colors: `#32FF96`, `#FFFF66`, `#FF6666`, `#FB00FF`, `#902FF0`, `#32FF96`
 
 ### Style Template
 
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': { 'background': '#000066' }}}%%
 graph TD
-    A[Primary Element]
-    B[Secondary Element]
-    C[Warning Element]
-    D[Success Element]
-    E[Error Element]
+    A[Element 1]
+    B[Element 2]
+    C[Element 3]
+    D[Element 4]
+    E[Element 5]
+    F[Element 6]
 
-    style A fill:#e1f5fe,stroke:#01579b
-    style B fill:#f3e5f5,stroke:#4a148c
-    style C fill:#fff3e0,stroke:#e65100
-    style D fill:#e8f5e9,stroke:#1b5e20
-    style E fill:#ffebee,stroke:#b71c1c
+    %% Cyclic color assignment for same-level nodes
+    style A fill:none,stroke:#32FF96,stroke-width:3px,rx:6
+    style B fill:none,stroke:#FFFF66,stroke-width:3px,rx:6
+    style C fill:none,stroke:#FF6666,stroke-width:3px,rx:6
+    style D fill:none,stroke:#FB00FF,stroke-width:3px,rx:6
+    style E fill:none,stroke:#902FF0,stroke-width:3px,rx:6
+    style F fill:none,stroke:#32FF96,stroke-width:3px,rx:6
 ```
+
+### Hierarchical Example
+
+```mermaid
+%%{init: {'theme': 'base', 'themeVariables': { 'background': '#000066' }}}%%
+graph TB
+    %% Level 1 - Primary (3px)
+    Root[Root Node]
+
+    %% Level 2 - Same level siblings cycle colors
+    A[Child A]
+    B[Child B]
+    C[Child C]
+
+    %% Level 3 - Secondary (2px)
+    A1[Sub A1]
+    A2[Sub A2]
+    B1[Sub B1]
+
+    Root --> A
+    Root --> B
+    Root --> C
+    A --> A1
+    A --> A2
+    B --> B1
+
+    %% Level 1 styling
+    style Root fill:none,stroke:#32FF96,stroke-width:3px,rx:6
+
+    %% Level 2 - cycle through colors
+    style A fill:none,stroke:#32FF96,stroke-width:2px,rx:6
+    style B fill:none,stroke:#FFFF66,stroke-width:2px,rx:6
+    style C fill:none,stroke:#FF6666,stroke-width:2px,rx:6
+
+    %% Level 3 - cycle continues per parent
+    style A1 fill:none,stroke:#32FF96,stroke-width:1px,rx:6
+    style A2 fill:none,stroke:#FFFF66,stroke-width:1px,rx:6
+    style B1 fill:none,stroke:#32FF96,stroke-width:1px,rx:6
+```
+
+### Verification Checklist
+
+Before generating ANY diagram, verify:
+- [ ] Canvas background set to `#000066`
+- [ ] All shapes have `fill:none` (no background fill)
+- [ ] Stroke width is `3px`, `2px`, or `1px` based on importance
+- [ ] Rectangle border radius is `6` (NOT `12`)
+- [ ] Same-level nodes cycle through theme colors in order
+- [ ] Theme colors used: `#32FF96` → `#FFFF66` → `#FF6666` → `#FB00FF` → `#902FF0` → repeat
+
+### Other Quality Rules
+
+1. **All UML diagrams MUST follow standard syntax**
+2. **Use Mermaid syntax for all diagrams**
+3. **Complex processes MUST be decomposed** into multiple diagrams
+4. **Each diagram MUST have a clear title**
 
 ---
 
