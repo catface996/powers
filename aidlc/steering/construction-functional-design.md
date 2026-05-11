@@ -66,7 +66,15 @@ Design detailed business logic for the unit, technology-agnostic and focused pur
 ### Step 6: Generate Functional Design Artifacts
 - Create `aidlc-docs/construction/{unit-name}/functional-design/business-logic-model.md`
 - Create `aidlc-docs/construction/{unit-name}/functional-design/business-rules.md`
+  - **Every business rule has a unique stable ID**: `BR-nnn` (e.g., `BR-012`)
+  - IDs are immutable across the project. Deleted rules do not reuse IDs.
+  - Each BR records: statement, conditions, outcomes, related ACs (AC-nnn), source requirement
 - Create `aidlc-docs/construction/{unit-name}/functional-design/domain-entities.md`
+  - **Every entity declares its invariants with stable IDs**: `INV-nnn` (e.g., `INV-003`)
+  - Invariants are conditions that must hold at all observable states of the entity
+  - Invariants feed property-based tests in Test Design
+
+**Why stable IDs matter**: Test Design (later in the per-unit loop, after NFR Design and Infrastructure Design) consumes these IDs directly. `test-cases.md` references BR-012 and INV-003 by ID. If IDs are unstable or absent, traceability breaks and Test Design cannot derive test cases systematically.
 
 ### Step 7: Present Completion Message
 - Present completion message in this structure:

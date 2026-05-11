@@ -51,9 +51,48 @@ Determine non-functional requirements for the unit and make tech stack choices.
 - Create clarification questions file if ANY ambiguities are detected
 - **Do not proceed until ALL ambiguities are resolved**
 
+### Step 5a: Measurability Gate (MANDATORY)
+
+**Purpose**: An NFR without a measurable target is a slogan. Slogans cannot be verified and ship as defects.
+
+**Rules for every NFR** (enforce before writing nfr-requirements.md):
+
+1. **Quantitative Target Required**
+   - "Fast" is not a target. "p95 response time < 200ms at 1000 RPS" is a target.
+   - "Scalable" is not a target. "Handles 10x current load with horizontal scaling; no shared state bottleneck" is a target.
+   - "Secure" is not a target. "All PII encrypted at rest (AES-256) and in transit (TLS 1.3); OWASP Top 10 scan passes on every build" is a target.
+
+2. **Measurement Method Required**
+   Every NFR declares HOW it will be measured. Without a method, the target is unverifiable.
+
+3. **Test Strategy Reference**
+   Every NFR references the Test Strategy artifact that defines the automation approach for this class of NFR. If Test Strategy has not been executed, flag this and return to Inception to execute it (see `inception-test-strategy.md`).
+
+4. **Acceptance Threshold**
+   The boundary between pass and fail must be unambiguous. "Acceptable performance" is not a threshold.
+
+**NFR Template** (each NFR must fill all fields):
+```markdown
+### NFR-{nnn}: [Name]
+- **Category**: Performance / Availability / Security / Scalability / Maintainability / Usability / Reliability
+- **Requirement**: [one-sentence statement]
+- **Quantitative Target**: [numeric target with unit]
+- **Measurement Method**: [how it will be measured - tool, metric, conditions]
+- **Acceptance Threshold**: [pass/fail boundary]
+- **Test Strategy Reference**: [pointer into inception/test-strategy/test-types-matrix.md section]
+- **Test Layer**: Load / Stress / Soak / Security-Scan / Chaos / Availability-Test / Manual
+- **Source AC / Story / Requirement**: [traceability - which AC or requirement drives this NFR]
+```
+
+**If any NFR fails this gate, it is not an NFR - it is a wish.** Return to Step 5 clarification rather than write unverifiable requirements.
+
 ### Step 6: Generate NFR Requirements Artifacts
 - Create `aidlc-docs/construction/{unit-name}/nfr-requirements/nfr-requirements.md`
+  - Every NFR fills the Step 5a template completely
+  - Table of NFR IDs (NFR-nnn) at the top for downstream reference
 - Create `aidlc-docs/construction/{unit-name}/nfr-requirements/tech-stack-decisions.md`
+- **If Test Strategy has been executed**: cross-link every NFR to its corresponding test type in the strategy
+- **If Test Strategy has NOT been executed** but any NFR has quantitative targets: flag to user that Test Strategy stage should be added back to the workflow
 
 ### Step 7: Present Completion Message
 - Present completion message in this structure:

@@ -25,18 +25,22 @@ B) Review a previous stage ([Show available stages])
 1. **Always read aidlc-state.md first** when detecting existing project
 2. **Parse current status** from the workflow file to populate the prompt
 3. **MANDATORY: Load Previous Stage Artifacts** - Before resuming any stage, automatically read all relevant artifacts from previous stages:
-   - **Reverse Engineering**: Read architecture.md, code-structure.md, api-documentation.md
+   - **Reverse Engineering**: Read architecture.md, code-structure.md, api-documentation.md, code-quality-assessment.md (test asset inventory)
    - **Requirements Analysis**: Read requirements.md, requirement-verification-questions.md
-   - **User Stories**: Read stories.md, personas.md, story-generation-plan.md
-   - **Application Design**: Read application-design artifacts (components.md, component-methods.md, services.md)
+   - **User Stories**: Read stories.md (with AC-nnn IDs in GWT format), personas.md, story-generation-plan.md
+   - **Application Design**: Read application-design artifacts (components.md, component-methods.md, services.md, testability-review.md)
+   - **Test Strategy**: Read test-strategy.md, traceability-matrix.md, test-types-matrix.md, test-environments.md, testability-constraints.md
    - **Design (Units)**: Read unit-of-work.md, unit-of-work-dependency.md, unit-of-work-story-map.md
-   - **Per-Unit Design**: Read functional-design.md, nfr-requirements.md, nfr-design.md, infrastructure-design.md
-   - **Code Stages**: Read all code files, plans, AND all previous artifacts
+   - **Per-Unit Design**: Read functional-design.md (with BR-/INV- IDs), nfr-requirements.md (with NFR- IDs), nfr-design.md, infrastructure-design.md
+   - **Per-Unit Test Design**: Read test-cases.md, test-doubles.md, test-data.md, coverage-claim.md
+   - **Code Stages**: Read all code files, plans, AND all previous artifacts (including test artifacts)
 4. **Smart Context Loading by Stage**:
    - **Early Stages (Workspace Detection, Reverse Engineering)**: Load workspace analysis
    - **Requirements/Stories**: Load reverse engineering + requirements artifacts
-   - **Design Stages**: Load requirements + stories + architecture + design artifacts
-   - **Code Stages**: Load ALL artifacts + existing code files
+   - **Test Strategy**: Load requirements + stories + application design + reverse engineering test assets (if brownfield)
+   - **Design Stages**: Load requirements + stories + architecture + design artifacts + testability-constraints.md (if Test Strategy executed)
+   - **Test Design**: Load test-strategy + testability-constraints + functional-design + nfr-requirements + nfr-design + infrastructure-design + story-to-AC mapping for this unit (Test Design runs after all design stages and needs every upstream output)
+   - **Code Stages**: Load ALL artifacts + test artifacts + existing code files
 5. **Adapt options** based on architectural choice and current phase
 6. **Show specific next steps** rather than generic descriptions
 7. **Log the continuity prompt** in audit.md with timestamp

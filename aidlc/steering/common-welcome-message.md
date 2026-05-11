@@ -34,6 +34,7 @@ AI-DLC is a structured yet flexible software development process that adapts to 
         ║ • User Stories (CONDITIONAL)          ║
         ║ • Workflow Planning (ALWAYS)          ║
         ║ • Application Design (CONDITIONAL)    ║
+        ║ • Test Strategy (CONDITIONAL)         ║
         ║ • Units Generation (CONDITIONAL)      ║
         ╚═══════════════════════════════════════╝
                               |
@@ -47,8 +48,9 @@ AI-DLC is a structured yet flexible software development process that adapts to 
         ║   - NFR Requirements Assess (COND)    ║
         ║   - NFR Design (COND)                 ║
         ║   - Infrastructure Design (COND)      ║
+        ║   - Test Design (CONDITIONAL)         ║
         ║   - Code Generation (ALWAYS)          ║
-        ║ • Build and Test (ALWAYS)             ║
+        ║ • Build and Test (ALWAYS - gate)      ║
         ╚═══════════════════════════════════════╝
                               |
                               v

@@ -180,6 +180,77 @@ Files tracking workflow progress and status.
 - `aidlc-state.md`: Overall workflow state
 - `audit.md`: Complete audit trail of all interactions
 
+## Testing Terminology
+
+### Test Pyramid
+The target distribution of tests across layers, from many fast tests at the bottom (unit) to few slow tests at the top (E2E). Shape is decided in Test Strategy, not per-unit.
+
+### Test Layers
+- **Unit Test**: Exercises a single component in isolation. Fast (<100ms). No real network, filesystem, database.
+- **Integration Test**: Exercises multiple components together, possibly with real infrastructure (containerized or in-memory).
+- **Contract Test**: Verifies the contract between two services. Can be consumer-driven or provider-driven.
+- **E2E Test (End-to-End)**: Exercises a full user journey through the deployed system.
+- **Non-Functional Tests**: Performance, security, availability, chaos — verify NFRs.
+
+### Test Doubles
+Umbrella term for test replacements of real collaborators.
+- **Fake**: A working implementation with shortcuts unsuitable for production (e.g., in-memory database).
+- **Stub**: Returns pre-programmed responses. No behavior.
+- **Mock**: Like a stub, but also verifies the interactions (calls made to it).
+- **Spy**: Records interactions for later assertion, often wraps a real object.
+- **Dummy**: A placeholder passed but never used.
+
+Choice of double is a trade-off, not a ranking. See `common-test-quality.md` Test Double Principles: prefer state over interaction verification; pick the double that minimizes brittleness for the observation you need.
+
+### Contract Anchor
+Any test that pins a mocked collaborator to reality (typically a contract test or real-integration test). **Every mock must have a contract anchor**, or the mock is an unverified assumption.
+
+### Coverage Metrics
+- **Line Coverage**: % of source lines executed by tests. Floor, not ceiling.
+- **Branch Coverage**: % of decision branches executed. Stronger than line.
+- **Mutation Score**: % of injected code mutations detected by tests. Strongest; expensive.
+
+### Flaky Test
+A test that fails intermittently with no production change. Treated as worse than no test; see `common-test-quality.md` Flaky Tests policy.
+
+### Traceability Matrix
+System-level table mapping Requirement → Story → Acceptance Criterion → Test Layer → Owning Unit. Lives in Test Strategy.
+
+### Testability Constraint
+An architectural constraint that downstream design must honor to make the strategy implementable (e.g., "all external calls through injectable ports"). Published in Test Strategy; enforced in Code Generation.
+
+### Stable IDs
+Immutable identifiers assigned at creation, never reused:
+- **S-nnn**: User Story
+- **AC-nnn**: Acceptance Criterion
+- **BR-nnn**: Business Rule
+- **INV-nnn**: Domain Invariant
+- **NFR-nnn**: Non-Functional Requirement
+- **TCON-nnn**: Testability Constraint (system-level, in test-strategy)
+- **TC-{unit}-nnn**: Test Case (per-unit)
+- **CT-nnn**: Contract Test
+- **IT-nnn**: Integration Test
+- **WAV-nnn**: Waiver (see `common-waiver.md`)
+
+These IDs form the spine of traceability from requirements through tests.
+
+**Important**: `TC-` and `TCON-` are distinct namespaces. `TC-` is always per-unit (e.g., `TC-order-012`). `TCON-` is system-level (e.g., `TCON-03`). Do not abbreviate Testability Constraint as `TC-`.
+
+### TDD vs Test-After
+- **TDD (Test-Driven Development)**: Write failing test, then production code to make it pass.
+- **Test-After**: Write production code, then tests that cover it atomically (same commit).
+
+AI-DLC supports both. Default is decided in Test Strategy. "Tests never" is not an option.
+
+### Given-When-Then (GWT)
+Acceptance criterion format:
+```
+Given [precondition]
+When  [action]
+Then  [observable outcome]
+```
+Mandated in `inception-user-stories.md` Step 4a.
+
 ## Common Abbreviations
 
 - **AI-DLC**: AI-Driven Development Life Cycle
@@ -187,3 +258,15 @@ Files tracking workflow progress and status.
 - **UOW**: Unit of Work
 - **API**: Application Programming Interface
 - **CDK**: Cloud Development Kit (AWS)
+- **AC**: Acceptance Criterion
+- **BR**: Business Rule
+- **INV**: Domain Invariant
+- **GWT**: Given-When-Then
+- **TDD**: Test-Driven Development
+- **TCON**: Testability Constraint
+- **TC**: Test Case (per-unit)
+- **CT**: Contract Test
+- **IT**: Integration Test
+- **WAV**: Waiver
+- **SAST**: Static Application Security Testing
+- **DAST**: Dynamic Application Security Testing

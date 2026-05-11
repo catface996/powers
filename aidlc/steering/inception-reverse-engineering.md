@@ -237,10 +237,43 @@ Create `aidlc-docs/inception/reverse-engineering/code-quality-assessment.md`:
 ```markdown
 # Code Quality Assessment
 
-## Test Coverage
-- **Overall**: [Percentage or Good/Fair/Poor/None]
-- **Unit Tests**: [Status]
-- **Integration Tests**: [Status]
+## Test Asset Inventory (inputs to Test Strategy)
+
+### Test Frameworks
+- [Framework name, version, scope of usage]
+
+### Test Layers Present
+- **Unit Tests**: [count, location, coverage tool if any]
+- **Integration Tests**: [count, location, environment requirements]
+- **Contract Tests**: [framework, producers, consumers]
+- **E2E Tests**: [count, location, runtime]
+- **Performance Tests**: [framework, scenarios]
+- **Security Tests**: [tools: SAST, DAST, dependency scan]
+
+### Coverage Baseline
+- **Overall line coverage**: [%]
+- **Branch coverage**: [% or N/A]
+- **Coverage per module**: [table]
+- **Mutation score**: [% or N/A]
+
+### Test Runtime Baseline
+- **Unit suite**: [duration]
+- **Integration suite**: [duration]
+- **E2E suite**: [duration]
+- **Full suite**: [duration]
+
+### Flakiness Inventory
+- [List known-flaky tests with last failure and root cause if known]
+- [Retry-on-failure policy in CI, if any]
+
+### CI Pipeline Test Stages
+- [Ordered list of test stages, triggers, blocking behavior]
+
+### Test Data Strategy (current)
+- [Fixture location, factory libraries, data source: synthetic/anonymized/fixture]
+
+### Test Doubles in Use
+- [Mocks vs fakes; any in-house test doubles worth noting]
 
 ## Code Quality Indicators
 - **Linting**: [Configured/Not configured]
@@ -253,7 +286,15 @@ Create `aidlc-docs/inception/reverse-engineering/code-quality-assessment.md`:
 ## Patterns and Anti-patterns
 - **Good Patterns**: [List]
 - **Anti-patterns**: [List with locations]
+
+## Testability Observations
+- [Hard-coded dependencies preventing replacement in tests]
+- [Non-injectable time/randomness/ID sources]
+- [Singletons/global state complicating isolation]
+- [Flag for Test Strategy: what constraints existing tests impose on new strategy]
 ```
+
+**Note**: The Test Asset Inventory is the primary input to Test Strategy when it executes. Make it accurate, not aspirational.
 
 ## Step 9: Create Timestamp File
 

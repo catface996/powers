@@ -150,6 +150,118 @@ For medium priority cases, execute user stories if ANY of these apply:
   - [ ] Ensure stories are Independent, Negotiable, Valuable, Estimable, Small, Testable
   - [ ] Include acceptance criteria for each story
   - [ ] Map personas to relevant user stories
+  - [ ] Assign stable IDs: Story IDs (S-nnn) and Acceptance Criterion IDs (AC-nnn)
+  - [ ] Every acceptance criterion is written in Given-When-Then (GWT) format
+  - [ ] Every acceptance criterion is tagged with an intended test layer (Unit / Integration / Contract / E2E / Manual)
+  - [ ] Every acceptance criterion names the persona it applies to
+
+## Step 4a: Acceptance Criterion Quality Gate (MANDATORY)
+
+**Purpose**: Acceptance criteria are test specifications in disguise. Low-quality ACs propagate defects into Test Strategy, Test Design, and Code Generation.
+
+**Rules for every AC** (enforce before writing stories.md):
+
+1. **GWT Format Required**
+   ```
+   Given [precondition / context]
+   When  [action / event]
+   Then  [observable outcome]
+   ```
+   ACs that cannot be expressed in GWT indicate incomplete understanding. Return to requirements analysis rather than paper over.
+
+2. **Stable IDs**
+   - Story: `S-nnn` (e.g., `S-012`)
+   - Acceptance Criterion: `AC-nnn` (e.g., `AC-047`), unique across the project
+   - IDs are immutable. Deleted ACs do not have their IDs reused.
+
+3. **Test Layer Tag**
+   Every AC is tagged with exactly one primary test layer, plus optional secondary layers:
+   - **Unit** - pure logic, single component
+   - **Integration** - multiple components / real collaborators
+   - **Contract** - cross-service API contract
+   - **E2E** - full user journey
+   - **Manual** - cannot be automated (rare; must be justified)
+
+   If the layer cannot be decided, the AC is underspecified.
+
+4. **Observable Outcome**
+   The `Then` clause names something externally observable: a response, a state change visible via an API, an emitted event. "The system processes the request" is not observable.
+
+5. **No Implementation Leakage**
+   `When` and `Then` describe behavior, not implementation. "When the service calls the database" is wrong.
+
+**AC Template**:
+```markdown
+### AC-047 [test-layer: Unit, Integration]
+**Story**: S-012
+**Persona**: Registered Customer
+
+**Given** a registered customer has 3 items in their cart totaling $120
+**When**  they apply coupon code `SAVE10`
+**Then**  the cart total displays $108
+**And**   the applied coupons list contains `SAVE10`
+```
+
+**Full Example: One Story, Multiple Non-Overlapping ACs**
+
+A single story typically has 3-5 ACs. They must cover the happy path AND failure paths, without duplication.
+
+```markdown
+## S-012: Customer Applies Discount Coupon
+**As** a registered customer
+**I want** to apply a discount coupon at checkout
+**So that** I receive the correct promotional pricing
+
+### AC-047 [test-layer: Unit, Integration]  (happy path)
+**Persona**: Registered Customer
+**Given** a registered customer has 3 items in their cart totaling $120
+**When**  they apply coupon code `SAVE10`
+**Then**  the cart total displays $108
+**And**   the applied coupons list contains `SAVE10`
+
+### AC-048 [test-layer: Unit]  (invalid coupon)
+**Persona**: Registered Customer
+**Given** a registered customer with any cart contents
+**When**  they apply coupon code `NOTREAL`
+**Then**  the response contains error code `COUPON_NOT_FOUND`
+**And**   the cart total is unchanged
+**And**   the applied coupons list is empty
+
+### AC-049 [test-layer: Unit]  (expired coupon)
+**Persona**: Registered Customer
+**Given** a coupon code `EXPIRED20` with expiration date in the past
+**When**  a registered customer applies it
+**Then**  the response contains error code `COUPON_EXPIRED`
+**And**   the cart total is unchanged
+
+### AC-050 [test-layer: Integration]  (per-customer usage limit)
+**Persona**: Registered Customer
+**Given** a coupon code `ONCEONLY` with per-customer usage limit 1
+**And**   the customer has already used `ONCEONLY`
+**When**  they apply `ONCEONLY` again
+**Then**  the response contains error code `COUPON_USAGE_EXCEEDED`
+**And**   the cart total is unchanged
+
+### AC-051 [test-layer: Unit, Contract]  (minimum order value)
+**Persona**: Registered Customer
+**Given** a coupon code `BIG50` requiring minimum cart value $100
+**And**   the customer's cart total is $80
+**When**  they apply `BIG50`
+**Then**  the response contains error code `COUPON_MINIMUM_NOT_MET`
+**And**   the response includes the required minimum ($100)
+**And**   the cart total is unchanged
+```
+
+**Observe the properties**:
+
+- **No overlap**: AC-048 (invalid) ≠ AC-049 (expired) ≠ AC-050 (usage limit) — each tests a distinct failure mode
+- **Happy + failure coverage**: AC-047 is the happy path; AC-048 through AC-051 are failure modes
+- **Observable outcomes**: every Then clause describes something externally visible (error code, cart total, response field)
+- **Different test layers** justified: Unit for pure logic, Integration for per-customer persistence, Contract for API shape
+- **Personas repeated** because they genuinely apply; remove if a persona does not apply to a given AC
+- **Stable IDs** assigned sequentially; if AC-050 is deleted later, ID AC-050 is not reused
+
+**If any AC fails this gate, the story is incomplete.** Return to story planning and fix before approval.
 
 ## Step 5: Present Story Options
 - Include different approaches for story breakdown in the plan document:
@@ -323,5 +435,7 @@ If the analysis in step 9 reveals ANY ambiguous answers, you MUST:
 - Story plan explicitly approved by user
 - All steps in story generation plan marked [x]
 - All story artifacts generated according to plan (stories.md, personas.md)
+- **Every AC passes the Step 4a quality gate**: GWT format, stable ID, test layer tag, observable outcome, no implementation leakage
+- **All ACs are uniquely IDed** and will be referenced by Test Strategy's traceability matrix and Test Design's coverage claims
 - Generated stories explicitly approved by user
 - Stories verified and ready for next stage

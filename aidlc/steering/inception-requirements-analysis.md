@@ -87,8 +87,14 @@ Analyze whatever the user has provided:
 - **Business Context**: Goals, constraints, success criteria, stakeholder needs
 - **Technical Context**: Integration points, data requirements, system boundaries
 - **Quality Attributes**: Reliability, maintainability, testability, accessibility
+- **Testability** (MANDATORY sub-dimension):
+  - Can each functional requirement be observed from outside the system? If not, flag as untestable and clarify.
+  - Does every NFR have a quantitative, measurable target? ("Fast" is not a requirement.)
+  - Are external dependencies identifiable as replaceable in test environments?
+  - Are there time/date/randomness/ID-generation concerns that need abstraction?
+  - Are there regulatory testing obligations (e.g., audit evidence, compliance scans)?
 
-**When in doubt, ask questions** - incomplete requirements lead to poor implementations.
+**When in doubt, ask questions** - incomplete requirements lead to poor implementations. Untestable requirements lead to defective implementations shipping unnoticed.
 
 ### Step 6: Generate Clarifying Questions (PROACTIVE APPROACH)
    - **ALWAYS** create `aidlc-docs/inception/requirements/requirement-verification-questions.md` unless requirements are exceptionally clear and complete
@@ -111,6 +117,12 @@ Analyze whatever the user has provided:
      - Scope estimate
      - Complexity estimate
    - Include both functional and non-functional requirements
+   - **Include a dedicated "Testability Requirements" section**:
+     - Observable outcomes for each functional requirement
+     - Quantitative targets and acceptance thresholds for each NFR
+     - External dependency replaceability
+     - Time/randomness/ID-generation abstraction needs
+     - Regulatory testing obligations (if any)
    - Incorporate user's answers to clarifying questions
    - Provide brief summary of key requirements
 

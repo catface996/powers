@@ -35,7 +35,41 @@ Application Design focuses on:
   - [ ] Generate component-methods.md with method signatures (business rules detailed later in Functional Design)
   - [ ] Generate services.md with service definitions and orchestration patterns
   - [ ] Generate component-dependency.md with dependency relationships and communication patterns
+  - [ ] Generate testability-review.md with seams, injection points, and boundary isolation (see Step 4a)
   - [ ] Validate design completeness and consistency
+
+### 4a. Testability Design Review (MANDATORY)
+
+**Purpose**: A design that cannot host a reasonable test strategy is a defect. Catching this in Inception is cheap; catching it in Construction is expensive.
+
+**Output**: `aidlc-docs/inception/application-design/testability-review.md`
+
+**Mandatory checklist** — enumerate for this design:
+
+1. **External Dependencies**
+   - List every external system the design touches (databases, APIs, message queues, filesystems, third-party services).
+   - For each, describe how it will be replaceable in tests (injectable port, containerized real impl, in-memory fake, sandbox).
+   - Any dependency with no replaceability plan is a testability defect — fix the design.
+
+2. **Non-Deterministic Sources**
+   - Identify every source of non-determinism: clock/time, randomness, ID generation, environment variables, file order, network latency.
+   - Describe how each will be injected or controlled in tests.
+   - Components that hard-code `new Date()` / `Random()` / `UUID.randomUUID()` without abstraction cannot be tested deterministically — fix the design.
+
+3. **Hidden State**
+   - List any singletons, static fields, module-level mutable state.
+   - Justify their existence or remove them.
+   - Test isolation requires per-test state.
+
+4. **Observable Boundaries**
+   - For every component, name the observable outcomes available to tests (return values, emitted events, state queries).
+   - If a component's behavior is only observable via side effects inside itself, it cannot be tested at the unit layer — fix the design or reclassify as integration-only.
+
+5. **Contract Points**
+   - For every cross-component interaction, identify whether a contract test is needed (based on Test Strategy, if executed).
+   - Define the interface stability commitment.
+
+**If the review reveals untestable design, return to earlier steps of this stage or flag for Test Strategy feedback loop.** Do not write untestable design to disk and call it done.
 
 ### 4. Generate Context-Appropriate Questions
 **DIRECTIVE**: Analyze the requirements and stories to generate ONLY questions relevant to THIS specific application design. Use the categories below as inspiration, NOT as a mandatory checklist. Skip entire categories if not applicable.
@@ -103,6 +137,12 @@ If the analysis in step 8 reveals ANY ambiguous answers, you MUST:
   - Dependency matrix showing relationships
   - Communication patterns between components
   - Data flow diagrams
+- Create `aidlc-docs/inception/application-design/testability-review.md` (per Step 4a) with:
+  - External dependency replaceability plan
+  - Non-deterministic source abstractions
+  - Hidden state inventory
+  - Observable boundaries per component
+  - Contract points
 
 ### 11. Log Approval
 - Log approval prompt with timestamp in `aidlc-docs/audit.md`

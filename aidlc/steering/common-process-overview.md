@@ -13,13 +13,14 @@
 • **OPERATIONS PHASE**: Placeholder for future deployment and monitoring workflows
 
 ## The Adaptive Workflow:
-• **Workspace Detection** (always) → **Reverse Engineering** (brownfield only) → **Requirements Analysis** (always, adaptive depth) → **Conditional Phases** (as needed) → **Workflow Planning** (always) → **Code Generation** (always, per-unit) → **Build and Test** (always)
+• **Workspace Detection** (always) → **Reverse Engineering** (brownfield only) → **Requirements Analysis** (always, adaptive depth) → **Conditional Phases** (as needed) → **Test Strategy** (conditional, system-level) → **Workflow Planning** (always) → **Code Generation** (always, per-unit) → **Build and Test** (always, quality gate)
 
 ## How It Works:
 • **AI analyzes** your request, workspace, and complexity to determine which stages are needed
 • **These stages always execute**: Workspace Detection, Requirements Analysis (adaptive depth), Workflow Planning, Code Generation (per-unit), Build and Test
-• **All other stages are conditional**: Reverse Engineering, User Stories, Application Design, Units Generation, per-unit design stages (Functional Design, NFR Requirements, NFR Design, Infrastructure Design)
+• **All other stages are conditional**: Reverse Engineering, User Stories, Application Design, Test Strategy, Units Generation, per-unit design stages (Functional Design, NFR Requirements, NFR Design, Infrastructure Design, Test Design)
 • **No fixed sequences**: Stages execute in the order that makes sense for your specific task
+• **Testing is first-class**: Test Strategy (Inception, system-level) and Test Design (Construction, per-unit) ensure tests derive from requirements, not from implementation
 
 ## Your Team's Role:
 • **Answer questions** in dedicated question files using [Answer]: tags with letter choices (A, B, C, D, E)
@@ -41,6 +42,7 @@ flowchart TD
         Stories["User Stories<br/><b>CONDITIONAL</b>"]
         WP["Workflow Planning<br/><b>ALWAYS</b>"]
         AppDesign["Application Design<br/><b>CONDITIONAL</b>"]
+        TS["Test Strategy<br/><b>CONDITIONAL</b>"]
         UnitsG["Units Generation<br/><b>CONDITIONAL</b>"]
     end
     
@@ -49,6 +51,7 @@ flowchart TD
         NFRA["NFR Requirements<br/><b>CONDITIONAL</b>"]
         NFRD["NFR Design<br/><b>CONDITIONAL</b>"]
         ID["Infrastructure Design<br/><b>CONDITIONAL</b>"]
+        TD["Test Design<br/><b>CONDITIONAL</b>"]
         CG["Code Generation<br/><b>ALWAYS</b>"]
         BT["Build and Test<br/><b>ALWAYS</b>"]
     end
@@ -67,18 +70,22 @@ flowchart TD
     Stories --> WP
     
     WP -.-> AppDesign
+    WP -.-> TS
     WP -.-> UnitsG
-    AppDesign -.-> UnitsG
+    AppDesign -.-> TS
+    TS -.-> UnitsG
     UnitsG --> FD
     FD -.-> NFRA
     NFRA -.-> NFRD
     NFRD -.-> ID
+    ID -.-> TD
     
     WP --> CG
     FD --> CG
     NFRA --> CG
     NFRD --> CG
     ID --> CG
+    TD --> CG
     CG -.->|Next Unit| FD
     CG --> BT
     BT -.-> OPS
@@ -96,8 +103,10 @@ flowchart TD
     style AppDesign fill:#FFA726,stroke:#E65100,stroke-width:3px,stroke-dasharray: 5 5,color:#000
 
     style UnitsG fill:#FFA726,stroke:#E65100,stroke-width:3px,stroke-dasharray: 5 5,color:#000
+    style TS fill:#FFA726,stroke:#E65100,stroke-width:3px,stroke-dasharray: 5 5,color:#000
     style FD fill:#FFA726,stroke:#E65100,stroke-width:3px,stroke-dasharray: 5 5,color:#000
     style NFRA fill:#FFA726,stroke:#E65100,stroke-width:3px,stroke-dasharray: 5 5,color:#000
+    style TD fill:#FFA726,stroke:#E65100,stroke-width:3px,stroke-dasharray: 5 5,color:#000
     style NFRD fill:#FFA726,stroke:#E65100,stroke-width:3px,stroke-dasharray: 5 5,color:#000
     style ID fill:#FFA726,stroke:#E65100,stroke-width:3px,stroke-dasharray: 5 5,color:#000
     style INCEPTION fill:#BBDEFB,stroke:#1565C0,stroke-width:3px, color:#000
@@ -115,18 +124,20 @@ flowchart TD
 - Workspace Detection: Analyze workspace state and project type (ALWAYS)
 - Reverse Engineering: Analyze existing codebase (CONDITIONAL - Brownfield only)
 - Requirements Analysis: Gather and validate requirements (ALWAYS - Adaptive depth)
-- User Stories: Create user stories and personas (CONDITIONAL)
+- User Stories: Create user stories and personas with GWT-format ACs (CONDITIONAL)
 - Workflow Planning: Create execution plan (ALWAYS)
 - Application Design: High-level component identification and service layer design (CONDITIONAL)
+- Test Strategy: System-wide testing strategy, traceability matrix, testability constraints (CONDITIONAL)
 - Units Generation: Decompose into units of work (CONDITIONAL)
 
 **🟢 CONSTRUCTION PHASE** - Design, Implementation, Build and Test
-- Functional Design: Detailed business logic design per unit (CONDITIONAL, per-unit)
-- NFR Requirements: Determine NFRs and select tech stack (CONDITIONAL, per-unit)
+- Functional Design: Detailed business logic design per unit, with stable IDs for rules/entities/invariants (CONDITIONAL, per-unit)
+- NFR Requirements: Determine NFRs with measurable targets and select tech stack (CONDITIONAL, per-unit)
 - NFR Design: Incorporate NFR patterns and logical components (CONDITIONAL, per-unit)
 - Infrastructure Design: Map to actual infrastructure services (CONDITIONAL, per-unit)
-- Code Generation: Generate code with Part 1 - Planning, Part 2 - Generation (ALWAYS, per-unit)
-- Build and Test: Build all units and execute comprehensive testing (ALWAYS)
+- Test Design: Translate all design outputs (functional + NFR + infrastructure) into test cases, test doubles, and coverage claim (CONDITIONAL, per-unit; positioned last so it covers every design decision)
+- Code Generation: Generate code AND tests atomically per test-cases.md (ALWAYS, per-unit)
+- Build and Test: Quality gate - build all units, execute comprehensive testing, enforce coverage and flakiness gates (ALWAYS)
 
 **🟡 OPERATIONS PHASE** - Placeholder
 - Operations: Placeholder for future deployment and monitoring workflows (PLACEHOLDER)

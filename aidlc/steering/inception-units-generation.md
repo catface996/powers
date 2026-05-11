@@ -30,9 +30,42 @@ This stage decomposes the system into manageable units of work through two integ
 - [ ] Generate `aidlc-docs/inception/application-design/unit-of-work.md` with unit definitions and responsibilities
 - [ ] Generate `aidlc-docs/inception/application-design/unit-of-work-dependency.md` with dependency matrix
 - [ ] Generate `aidlc-docs/inception/application-design/unit-of-work-story-map.md` mapping stories to units
+- [ ] Generate `aidlc-docs/inception/application-design/unit-test-ownership.md` declaring test ownership per unit (see Step 2a)
 - [ ] **Greenfield only**: Document code organization strategy in `unit-of-work.md` (see code-generation.md for structure patterns)
 - [ ] Validate unit boundaries and dependencies
 - [ ] Ensure all stories are assigned to units
+- [ ] Ensure every AC is owned by at least one unit (test ownership)
+
+## Step 2a: Test-Ownership Boundaries (MANDATORY)
+
+**Purpose**: Without explicit test ownership, integration tests duplicate, contract tests get invented ad-hoc at first failure, and no one knows which unit's suite catches which AC.
+
+**Output**: `aidlc-docs/inception/application-design/unit-test-ownership.md`
+
+For each unit, document:
+
+```markdown
+## Unit: {unit-name}
+
+### AC Ownership
+- Owns assertions for: AC-007, AC-008, AC-012
+- Participates in (non-owner): AC-015 (owner: order-svc)
+
+### Test Layer Responsibilities
+- Unit tests: owned entirely
+- Integration tests: owns scenarios originating in this unit
+- Contract tests (producer): exposes contracts CT-042, CT-043
+- Contract tests (consumer): consumes contracts CT-011 (owner: auth-svc), CT-023 (owner: billing-svc)
+- E2E tests: participates in journey E2E-003 (owner: platform team)
+- Non-functional tests: owns NFR-002 (latency) load test; participates in NFR-007 (availability) chaos test
+```
+
+**Rules**:
+- Every AC has exactly one owning unit (for assertion responsibility).
+- Every cross-unit contract has exactly one producer and one or more consumers, all named.
+- Non-functional tests are owned explicitly; "shared responsibility" is not allowed.
+
+**Input dependency**: If Test Strategy was executed, consume its traceability-matrix.md to populate AC ownership. If Test Strategy was skipped, flag units with contract/NFR obligations and recommend adding Test Strategy back.
 
 ## Step 3: Generate Context-Appropriate Questions
 **DIRECTIVE**: Analyze the requirements, stories, and application design to generate ONLY questions relevant to THIS specific decomposition problem. Use the categories below as inspiration, NOT as a mandatory checklist. Skip entire categories if not applicable.

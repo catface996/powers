@@ -128,6 +128,22 @@ Evaluate risk level:
 - No new components or methods
 - Pure implementation changes
 
+### 3.2a Test Strategy - Execute IF any of:
+- System decomposes into multiple units (contract/integration boundaries exist)
+- Any NFR has quantitative targets (performance, availability, security)
+- Regulated domain (finance, healthcare, public sector, safety-critical)
+- Brownfield project with existing test suite that must coexist
+- Public or customer-facing API
+- Multiple personas with different acceptance criteria
+- External integrations (third-party APIs, message queues)
+
+**Skip IF**:
+- Single-file change with zero behavior change
+- Documentation-only update
+- Internal tooling with no correctness requirements
+
+**Default**: Execute. Skipping is an explicit decision that must be justified in the execution plan.
+
 ### 3.3 Design (Units Planning/Generation) - Execute IF:
 - New data models or schemas
 - API changes or new endpoints
@@ -262,6 +278,7 @@ flowchart TD
         US["User Stories<br/><b>STATUS</b>"]
         WP["Workflow Planning<br/><b>STATUS</b>"]
         AD["Application Design<br/><b>STATUS</b>"]
+        TS["Test Strategy<br/><b>STATUS</b>"]
         UP["Units Planning<br/><b>STATUS</b>"]
         UG["Units Generation<br/><b>STATUS</b>"]
     end
@@ -271,6 +288,7 @@ flowchart TD
         NFRA["NFR Requirements<br/><b>STATUS</b>"]
         NFRD["NFR Design<br/><b>STATUS</b>"]
         ID["Infrastructure Design<br/><b>STATUS</b>"]
+        TD["Test Design<br/><b>STATUS</b>"]
         CP["Code Planning<br/><b>EXECUTE</b>"]
         CG["Code Generation<br/><b>EXECUTE</b>"]
         BT["Build and Test<br/><b>EXECUTE</b>"]
@@ -304,6 +322,8 @@ flowchart TD
 - [x] Execution Plan (IN PROGRESS)
 - [ ] Application Design - [EXECUTE/SKIP]
   - **Rationale**: [Why executing or skipping]
+- [ ] Test Strategy - [EXECUTE/SKIP]
+  - **Rationale**: [Why executing or skipping - default EXECUTE unless single-file/docs-only change]
 - [ ] Units Planning - [EXECUTE/SKIP]
   - **Rationale**: [Why executing or skipping]
 - [ ] Units Generation - [EXECUTE/SKIP]
@@ -318,12 +338,14 @@ flowchart TD
   - **Rationale**: [Why executing or skipping]
 - [ ] Infrastructure Design - [EXECUTE/SKIP]
   - **Rationale**: [Why executing or skipping]
+- [ ] Test Design - [EXECUTE/SKIP] (per-unit, runs after all design stages)
+  - **Rationale**: [Why executing or skipping - default EXECUTE for units with business logic, ACs, NFRs, resilience patterns, or non-trivial infrastructure]
 - [ ] Code Planning - EXECUTE (ALWAYS)
   - **Rationale**: Implementation approach needed
 - [ ] Code Generation - EXECUTE (ALWAYS)
-  - **Rationale**: Code implementation needed
+  - **Rationale**: Code and tests generated atomically per test-cases.md
 - [ ] Build and Test - EXECUTE (ALWAYS)
-  - **Rationale**: Build, test, and verification needed
+  - **Rationale**: Quality gate enforcement (coverage, flakiness, NFR verification)
 
 ### 🟡 OPERATIONS PHASE
 - [ ] Operations - PLACEHOLDER
@@ -372,6 +394,7 @@ Update `aidlc-docs/aidlc-state.md`:
 - [x] User Stories (if applicable)
 - [x] Workflow Planning
 - [ ] Application Design - [EXECUTE/SKIP]
+- [ ] Test Strategy - [EXECUTE/SKIP]
 - [ ] Units Planning - [EXECUTE/SKIP]
 - [ ] Units Generation - [EXECUTE/SKIP]
 
@@ -380,9 +403,10 @@ Update `aidlc-docs/aidlc-state.md`:
 - [ ] NFR Requirements - [EXECUTE/SKIP]
 - [ ] NFR Design - [EXECUTE/SKIP]
 - [ ] Infrastructure Design - [EXECUTE/SKIP]
+- [ ] Test Design (per-unit) - [EXECUTE/SKIP]
 - [ ] Code Planning - EXECUTE
 - [ ] Code Generation - EXECUTE
-- [ ] Build and Test - EXECUTE
+- [ ] Build and Test - EXECUTE (quality gate)
 
 ### 🟡 OPERATIONS PHASE
 - [ ] Operations - PLACEHOLDER

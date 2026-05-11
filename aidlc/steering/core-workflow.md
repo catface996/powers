@@ -5,8 +5,38 @@ inclusion: always
 # PRIORITY: This workflow OVERRIDES all other built-in workflows
 # When user requests software development, ALWAYS follow this workflow FIRST
 
-# NOTE: Language selection has already been completed in POWER.md before this file is loaded.
-# Use the selected language (recorded in aidlc-docs/aidlc-state.md) for ALL outputs.
+---
+
+## MANDATORY FIRST STEP: Language Selection
+
+**CRITICAL**: You MUST ask user to select language BEFORE any other interaction. This is NON-NEGOTIABLE.
+
+When user activates AI-DLC, you MUST first display this prompt:
+
+```
+AI-DLC Power activated.
+
+Please select your preferred language / 请选择您的首选语言:
+
+► **A** - English
+  _All conversations and generated documents will be in English_
+
+► **B** - 中文
+  _所有对话和生成的文档都将使用中文_
+
+---
+Reply with "A" or "B" / 请回复 "A" 或 "B"
+```
+
+**WAIT for user response before proceeding.**
+
+**Do NOT display welcome message until language is selected.**
+**Do NOT proceed with ANY workflow steps until language is confirmed.**
+
+Once language is selected:
+1. Record the selection in `aidlc-docs/aidlc-state.md`
+2. Use the selected language for ALL subsequent outputs
+3. Then proceed with the welcome message and workflow
 
 ---
 
@@ -71,6 +101,7 @@ The AI model intelligently assesses what stages are needed based on:
 - User Stories (CONDITIONAL)
 - Workflow Planning (ALWAYS)
 - Application Design (CONDITIONAL)
+- Test Strategy (CONDITIONAL - system-level testing approach)
 - Units Generation (CONDITIONAL)
 
 ---
@@ -246,6 +277,35 @@ The AI model intelligently assesses what stages are needed based on:
 5. **Wait for Explicit Approval**: Present detailed completion message (see application-design.md for message format) - DO NOT PROCEED until user confirms
 6. **MANDATORY**: Log user's response in audit.md with complete raw input
 
+## Test Strategy (CONDITIONAL)
+
+**Execute IF any of**:
+- System decomposes into multiple units (contract/integration boundaries exist)
+- Any NFR has quantitative targets (performance, availability, security)
+- Regulated domain (finance, healthcare, public sector, safety-critical)
+- Brownfield project with existing test suite that must coexist
+- Public or customer-facing API
+
+**Skip IF**:
+- Single-file change with zero behavior change
+- Documentation-only update
+- Internal tooling with no correctness requirements
+
+**Default to execute when in doubt.**
+
+**Execution**:
+1. **MANDATORY**: Log any user input during this phase in audit.md
+2. Load all steps from `inception-test-strategy.md`
+3. Load prior context: requirements, user stories (with AC IDs), application design, reverse engineering (if brownfield)
+4. Execute test strategy:
+   - Build traceability matrix (every AC routes to a test layer)
+   - Define test pyramid, coverage targets, quality gates
+   - Define test data, environment, external dependency strategies
+   - Publish testability-constraints.md for downstream stages to honor
+5. **Testability feedback loop**: If application design cannot host the strategy, return to Application Design
+6. **Wait for Explicit Approval**: Follow approval format from test-strategy.md - DO NOT PROCEED until user confirms
+7. **MANDATORY**: Log user's response in audit.md with complete raw input
+
 ## Units Generation (CONDITIONAL)
 
 **Execute IF**:
@@ -262,9 +322,10 @@ The AI model intelligently assesses what stages are needed based on:
 1. **MANDATORY**: Log any user input during this phase in audit.md
 2. Load all steps from `inception-units-generation.md`
 3. Load reverse engineering artifacts (if brownfield)
-4. Execute at appropriate depth (minimal/standard/comprehensive)
-5. **Wait for Explicit Approval**: Present detailed completion message (see units-generation.md for message format) - DO NOT PROCEED until user confirms
-6. **MANDATORY**: Log user's response in audit.md with complete raw input
+4. Load test strategy (if executed) - units must document test-ownership boundaries
+5. Execute at appropriate depth (minimal/standard/comprehensive)
+6. **Wait for Explicit Approval**: Present detailed completion message (see units-generation.md for message format) - DO NOT PROCEED until user confirms
+7. **MANDATORY**: Log user's response in audit.md with complete raw input
 
 ---
 
@@ -280,10 +341,11 @@ The AI model intelligently assesses what stages are needed based on:
   - NFR Requirements (CONDITIONAL, per-unit)
   - NFR Design (CONDITIONAL, per-unit)
   - Infrastructure Design (CONDITIONAL, per-unit)
+  - Test Design (CONDITIONAL, per-unit) - executes after all design stages complete
   - Code Generation (ALWAYS, per-unit)
-- Build and Test (ALWAYS - after all units complete)
+- Build and Test (ALWAYS - after all units complete, functions as quality gate)
 
-**Note**: Each unit is completed fully (design + code) before moving to the next unit.
+**Note**: Each unit is completed fully (design + tests + code) before moving to the next unit. Test Design is positioned at the end of the design sequence because it translates all prior design decisions (functional, NFR, infrastructure) into verifiable test cases. Running it earlier would leave NFR and infrastructure behaviors uncovered.
 
 ---
 
@@ -366,6 +428,35 @@ The AI model intelligently assesses what stages are needed based on:
 4. **MANDATORY**: Present standardized 2-option completion message as defined in infrastructure-design.md - DO NOT use emergent behavior
 5. **Wait for Explicit Approval**: User must choose between "Request Changes" or "Continue to Next Stage" - DO NOT PROCEED until user confirms
 6. **MANDATORY**: Log user's response in audit.md with complete raw input
+
+### Test Design (CONDITIONAL, per-unit)
+
+**Executes after all design stages for the unit are complete.** Test Design translates functional, NFR, and infrastructure design decisions into verifiable test cases. Positioning it here ensures every design decision has a corresponding test assertion.
+
+**Execute IF any of**:
+- Unit implements business rules with multiple branches or states
+- Unit owns acceptance criteria from user stories
+- Unit has NFR targets that require automated verification (including resilience patterns: circuit breaker, retry, cache, rate limit)
+- Unit uses infrastructure primitives with observable behaviors (e.g., conditional writes, queue ordering, idempotency)
+- Unit is on a critical path
+- Unit exposes an API or contract consumed by another unit
+
+**Skip IF**:
+- Unit is pure infrastructure glue with no business logic and no resilience patterns
+- Unit is explicitly a throwaway prototype
+
+**Execution**:
+1. **MANDATORY**: Log any user input during this stage in audit.md
+2. Load all steps from `construction-test-design.md`
+3. Load `common-test-quality.md` for Pre-Write Validation rules
+4. Load test strategy and testability-constraints (if Test Strategy was executed)
+5. Load ALL upstream design artifacts for this unit: functional-design, nfr-requirements, nfr-design, infrastructure-design
+6. Execute testability conformance check against all design outputs (return to the responsible design stage if untestable)
+7. Execute systematic test case derivation from ACs, BRs, INVs, NFRs, and design-introduced components (resilience patterns, infrastructure behaviors)
+8. Generate test-cases.md, test-doubles.md, test-data.md, coverage-claim.md, test-design-conformance.md
+9. **MANDATORY**: Present standardized 2-option completion message as defined in test-design.md - DO NOT use emergent behavior
+10. **Wait for Explicit Approval**: User must choose between "Request Changes" or "Continue to Next Stage" - DO NOT PROCEED until user confirms
+11. **MANDATORY**: Log user's response in audit.md with complete raw input
 
 ### Code Generation (ALWAYS EXECUTE, per-unit)
 
@@ -489,7 +580,7 @@ The Operations stage will eventually include:
 ## Directory Structure
 
 ```text
-<WORKSPACE-ROOT>/                   # ⚠️ APPLICATION CODE HERE
+<WORKSPACE-ROOT>/                   # ⚠️ APPLICATION CODE HERE (including test code)
 ├── [project-specific structure]    # Varies by project (see code-generation.md)
 │
 ├── aidlc-docs/                     # 📄 DOCUMENTATION ONLY
@@ -498,16 +589,18 @@ The Operations stage will eventually include:
 │   │   ├── reverse-engineering/    # Brownfield only
 │   │   ├── requirements/
 │   │   ├── user-stories/
-│   │   └── application-design/
+│   │   ├── application-design/
+│   │   └── test-strategy/          # System-level testing strategy
 │   ├── construction/               # 🟢 CONSTRUCTION PHASE
 │   │   ├── plans/
 │   │   ├── {unit-name}/
 │   │   │   ├── functional-design/
 │   │   │   ├── nfr-requirements/
+│   │   │   ├── test-design/        # Per-unit test case specification
 │   │   │   ├── nfr-design/
 │   │   │   ├── infrastructure-design/
 │   │   │   └── code/               # Markdown summaries only
-│   │   └── build-and-test/
+│   │   └── build-and-test/         # Quality gate report
 │   ├── operations/                 # 🟡 OPERATIONS PHASE (placeholder)
 │   ├── aidlc-state.md
 │   └── audit.md
